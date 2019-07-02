@@ -1,0 +1,89 @@
+<div id="page-top"  >
+	<div class="alert alert-success" role="alert" *ngIf=showUpdateDataMessage><span><strong>Data Updated!</strong></span></div>
+<div class="alert alert-warning" role="alert" *ngIf=showDataDeletedMessage><span><strong>Data Deleted!</strong></span></div>
+
+    <div id="wrapper" >
+        <div class="d-flex flex-column" id="content-wrapper" >
+            <div id="content"  style="padding-top:10px; padding-bottom:10px;">
+                <div class="container-fluid"  >
+                    <div class="card shadow"  >
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 font-weight-bold">HOUSE2HOME DATA</p>
+                        </div>
+												<h1 style="color:#B2B2B2; padding-top:10px; padding-bottom:10px; padding-left:10px; " *ngIf=showMessage > Loading Data . . .</h1>
+                        <div class="card-body"   *ngIf=showData>
+                            <div class="row"  >
+                                <div class="col-md-6 text-nowrap">
+                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label> Show&nbsp;
+																			<select class="form-control form-control-sm custom-select custom-select-sm" [(ngModel)]="numOfData" (change)=aquireData()>
+																				<option value="10" >10</option>
+																				<option value="25" >25</option>
+																				<option value="50" >50</option>
+																				<option value="100">100</option>
+																			</select>&nbsp;</label>
+																		</div>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info"    >
+                                <table class="table dataTable my-0" id="dataTable"   >
+                                    <thead>
+                                        <tr>
+																					<th>ID</th>
+																					<th>LOTAREA</th>
+																					<th>HOUSESTYLE</th>
+																					<th>OVERALLCOND</th>
+																					<th>GARAGETYPE</th>
+																					<th>BATH</th>
+																					<th>BEDROOM</th>
+																					<th>DATE SOLD</th>
+																					<th>SALEPRICE</th>
+																					<th>VIEW</th>
+																					<th>EDIT</th>
+																					<th>DELETE</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+																			<tr *ngFor="let item of data">
+																					<td>{{item['ID']}}</td>
+																					<td>{{item['LOTAREA']}} sqft</td>
+																					<td>{{item['HOUSESTYLE']}}</td>
+																					<td>{{item['OVERALLCOND']}}</td>
+																					<td>{{item['GARAGETYPE']}}</td>
+																					<td>{{item['FULLBATH'] +item['HALFBATH'] }}</td>
+																					<td>{{item['BEDROOMABVGR']}}</td>
+																					<td>{{item['MOSOLD']}} / {{item['YRSOLD']}}</td>
+																					<td>${{item['SALEPRICE']}}</td>
+																					<td><button class="btn btn-warning btn-sm" type="button" [routerLink]="['/viewEntry',item['ID']]">View</button></td>
+																					<td><a [routerLink]="['/editData',item['ID']]"> <button class="btn btn-info btn-sm" type="button"  >Edit</button> </a></td>
+																					<td><button class="btn btn-danger btn-sm" type="button" (click)=deleteData(item)>Delete</button></td>
+
+																			</tr>
+
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+																					<th>ID</th>
+																					<th>LOTAREA</th>
+																					<th>HOUSESTYLE</th>
+																					<th>OVERALLCOND</th>
+																					<th>GARAGETYPE</th>
+																					<th>BATH</th>
+																					<th>BEDROOM</th>
+																					<th>DATE SOLD</th>
+																					<th>SALEPRICE</th>
+																					<th>VIEW</th>
+																					<th>EDIT</th>
+																					<th>DELETE</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

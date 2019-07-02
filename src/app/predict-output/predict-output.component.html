@@ -1,0 +1,163 @@
+<body id="page-top">
+  <div class="row" *ngIf=showMessage>
+      <div class="col">
+          <div class="card shadow mb-4" style="margin-top: 5px;">
+              <div class="card-body">
+                  <p style="font-size: 15px;margin-bottom: 0px;margin-top: 0px;">LOADING DATA. . .&nbsp;</p>
+              </div>
+          </div>
+      </div>
+  </div>
+    <div id="wrapper" *ngIf=showData>
+        <div class="d-flex flex-column" id="content-wrapper" style="background-color: rgb(254,254,254);">
+            <div id="content">
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-dark mb-0">Predicted House Value</h3>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="card shadow mb-4" style="margin-top: 5px;">
+                                <div class="card-body">
+                                  <agm-map  [zoom]="13" [latitude]="lat" [longitude]="lng">
+                                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                                  </agm-map>
+                                  <p style="font-size: 15px;margin-bottom: 0px;margin-top: 10px;">Address:&nbsp;{{model['address1']}} {{model['address2']}}, {{model['city']}}, {{model['state']}}, {{model['zipcode']}} {{model['country']}}</p>
+                                    <p style="font-size: 20px;color: rgb(78,115,223);">Est. Sale Price:&nbsp;${{model['salePrice']}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-left">
+                        <div class="col-lg-2 offset-lg-0">
+                            <div class="card text-white bg-primary shadow" style="width: 141px;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <p class="m-0" style="width: 90px;font-size: 12px;">Built</p>
+                                        </div>
+                                        <div class="col-lg-7 text-right"><fa-icon [icon]="['fas', 'clock']" ></fa-icon></div>
+                                    </div>
+                                    <p class="text-white-50 small m-0" style="font-size: 15px;">{{model['yearBuilt']}} </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 offset-lg-0">
+                            <div class="card text-white bg-primary shadow" style="width: 141px;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <p class="m-0" style="width: 90px;font-size: 12px;">Bed</p>
+                                        </div>
+                                        <div class="col-lg-7 text-right"><fa-icon [icon]="['fas', 'bed']" ></fa-icon></div>
+                                    </div>
+                                    <p class="text-white-50 small m-0" style="font-size: 15px;">{{model['bedroomAbvGr']}} </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 offset-lg-0">
+                            <div class="card text-white bg-primary shadow" style="width: 141px;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <p class="m-0" style="width: 90px;font-size: 12px;">Bath</p>
+                                        </div>
+                                        <div class="col-lg-7 text-right"><fa-icon [icon]="['fas', 'bath']" ></fa-icon></div>
+                                    </div>
+                                    <p class="text-white-50 small m-0" style="font-size: 15px;">{{model['fullBath']}} </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 offset-lg-0">
+                            <div class="card text-white bg-primary shadow" style="width: 141px;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <p class="m-0" style="width: 90px;font-size: 12px;">Garage</p>
+                                        </div>
+                                        <div class="col-lg-7 text-right"><fa-icon [icon]="['fas', 'car']" ></fa-icon></div>
+                                    </div>
+                                    <p class="text-white-50 small m-0" style="font-size: 15px;">{{model['garageCars']}} </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 offset-lg-0">
+                            <div class="card text-white bg-primary shadow" style="width: 141px;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <p class="m-0" style="width: 90px;font-size: 12px;">Condition</p>
+                                        </div>
+                                        <div class="col-lg-7 text-right"><fa-icon [icon]="['fas', 'home']"></fa-icon></div>
+                                    </div>
+                                    <p class="text-white-50 small m-0" style="font-size: 15px;">{{model['overallCond']}} </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 offset-lg-0">
+                            <div class="card text-white bg-primary shadow" style="width: 141px;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <p class="m-0" style="width: 90px;font-size: 12px;">Lot Area</p>
+                                        </div>
+                                        <div class="col-lg-7 text-right"><fa-icon [icon]="['fas', 'image']"></fa-icon></div>
+                                    </div>
+                                    <p class="text-white-50 small m-0" style="font-size: 15px;">{{model['lotArea']}}sqft </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card shadow mb-4" style="margin-top: 40px;">
+                                <div class="card-body">
+                                    <h4 class="small font-weight-bold" style="font-size: 20px;color: rgb(78,115,223);">Public Records</h4>
+                                    <div class="row">
+                                        <div class="col">
+                                          <ul>
+                                              <li>Building Style: {{model['bldgType']}}</li>
+                                              <li>House Style: {{model['houseStyle']}} </li>
+                                              <li>Kitch AbvGr: {{model['kitchenAbvGr']}}</li>
+                                              <li>Kitchen Quality: {{model['kitchenQual']}}</li>
+
+
+
+                                              <li>Bsmt Condition: {{model['bsmtCond']}}</li>
+                                              <li>Pool Area {{model['poolArea']}}</li>
+                                              <li>Pool QC: {{model['poolQC']}}</li>
+                                              <li>Fences: {{model['fence']}}</li>
+                                              <li>Garage Finish: {{model['garageFinish']}}</li>
+                                              <li>Garage Condition: {{model['garageCond']}}</li>
+                                              <li>Garage Cars: {{model['garageCars']}}</li>
+                                          </ul>
+
+                                      </div>
+                                      <div class="col">
+                                          <ul>
+                                              <li>Total Rooms AbvGr: {{model['totalRmsAbvGrd']}}</li>
+                                              <li>Heating: {{model['heating']}}</li>
+                                              <li>Heating QC: {{model['heatingQC']}}</li>
+                                              <li>Central Air: {{model['centralAir']}}</li>
+                                              <li>Electrical: {{model['electrical']}}</li>
+                                              <li>Roof Style: {{model['roofStyle']}}</li>
+                                              <li>Exter Condition: {{model['exterCond']}} </li>
+                                              <li>Foundation: {{model['foundation']}}</li>
+
+                                              <li>Fireplaces:: {{model['fireplaces']}} </li>
+                                              <li>Fireplace Quality: {{model['fireplaceQu']}}</li>
+                                              <li>Garage Type: {{model['garageType']}}</li>
+
+                                          </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

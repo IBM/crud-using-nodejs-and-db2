@@ -1,0 +1,435 @@
+<div id="page-top" >
+    <div id="wrapper" >
+        <div class="d-flex flex-column" id="content-wrapper"  >
+            <div id="content" style="padding-top:10px;">
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Prediction Model</h3>
+
+                    <div class="alert alert-danger" role="alert" *ngIf=showErrorMessage><span><strong>Please Enter All Fields Correctly!</strong></span></div>
+                    <div class="alert alert-info" role="alert" *ngIf=showClearDataMessage><span><strong>All Fields Cleared!</strong></span></div>
+                    <div class="card shadow mb-3" >
+                                         <div class="card-header py-3">
+                                             <p class="text-primary m-0 font-weight-bold">Address Information</p>
+                                         </div>
+                                         <div class="card-body">
+                     <div class="form-row" style="margin-bottom:0px;">
+                             <div class="col-md-2 mb-3">
+                               <label for="address1">Address 1</label>
+                               <input type="text" class="form-control" id="address1" placeholder="1234 abc st." required [(ngModel)]="model.address1" #opCarrier="ngModel" name="address1">
+                               <small class="text-danger" *ngIf=errAddress1>Please Enter A Valid Adress</small>
+                             </div>
+                             <div class="col-md-2 mb-3">
+                               <label for="address2">Address2</label>
+                               <input type="text" class="form-control" id="address2" placeholder="Apt 4" required [(ngModel)]="model.address2" #opCarrier="ngModel" name="address2">
+                               <small class="text-danger" *ngIf=errAddress2>Please Enter A Valid Adress</small>
+                             </div>
+                             <div class="col-md-2 mb-3">
+                               <label for="city">City</label>
+
+                                 <input type="text" class="form-control" id="city" placeholder="Pflugerville" aria-describedby="inputGroupPrepend2" required [(ngModel)]="model.city" #opCarrier="ngModel" name="city">
+                                 <small class="text-danger" *ngIf=errCity>Please Enter A Valid City</small>
+
+                             </div>
+                             <div class="col-md-2 mb-3">
+                               <label for="state">State</label>
+
+                                 <input type="text" class="form-control" id="state" placeholder="TX" aria-describedby="inputGroupPrepend2" required [(ngModel)]="model.state" #opCarrier="ngModel" name="state">
+                                   <small class="text-danger" *ngIf=errState>Please Enter A Valid State</small>
+
+                             </div>
+                             <div class="col-md-2 mb-3">
+                               <label for="zipcode">Zipcode</label>
+
+                                 <input type="text" class="form-control" id="zipcode" placeholder="78660" aria-describedby="inputGroupPrepend2" required required [(ngModel)]="model.zipcode" #opCarrier="ngModel" name="zipcode">
+                                 <small class="text-danger" *ngIf=errZipCode>Please Enter A Valid ZipCode</small>
+
+                             </div>
+                             <div class="col-md-2 mb-3">
+                               <label for="country">Country</label>
+
+                                 <input type="text" class="form-control" id="country" placeholder="USA" aria-describedby="inputGroupPrepend2" required [(ngModel)]="model.country" #opCarrier="ngModel" name="country">
+                                   <small class="text-danger" *ngIf=errCountry>Please Enter A Valid Country</small>
+
+                             </div>
+                           </div>
+                         </div>
+                         </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-3">
+                                    <p class="text-primary m-0 font-weight-bold">Prediction Parameter Inputs 1</p>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Lot Area</strong></label><input class="form-control" type="text" placeholder="Lot Area" required [(ngModel)]="model.lotArea" #opCarrier="ngModel" name="lotArea"><small class="text-danger" *ngIf=errLotArea>Please Enter A Valid Number</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Bldg Type</strong></label>
+                                                  <select class="form-control" required [(ngModel)]="model.bldgType" #opCarrier="ngModel" name="bldgType">
+                                                    <option> Select BldgType</option>
+                                                     <option>1Fam</option>
+                                                     <option>2FmCon</option>
+                                                     <option>Duplx</option>
+                                                     <option>TwnhsE</option>
+                                                     <option>TwnhsI</option>
+                                                  </select>
+                                                    <small
+                                                        class="text-danger" *ngIf=errBldgType>Please Choose An Option</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>House Style</strong></label>
+                                                  <select class="form-control" required [(ngModel)]="model.houseStyle" #opCarrier="ngModel" name="houseStyle">
+                                                    <option>Select HouseStyle</option>
+                                                    <option>1Story</option>
+                                                    <option>1.5Fin</option>
+                                                    <option>1.5Unf</option>
+                                                    <option>2Story</option>
+                                                    <option>2.5Fin</option>
+                                                    <option>2.5Unf</option>
+                                                    <option>SFoyer</option>
+                                                    <option>SLvl</option>
+                                                  </select>
+                                                    <small
+                                                        class="text-danger" *ngIf=errHouseStyle>Please Choose An Option</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Overall Condition</strong></label><input class="form-control" type="text" placeholder="Overall Condition" placeholder="Overall Cond" required [(ngModel)]="model.overallCond" #opCarrier="ngModel" name="overallCond"><small class="text-danger" *ngIf=errOverallCond>Please Enter A Valid Number</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Year Built</strong></label><input class="form-control" type="text" placeholder="Year Built" required [(ngModel)]="model.yearBuilt" #opCarrier="ngModel" name="yearBuilt"><small class="text-danger" *ngIf=errYearBuilt>Please Enter A Valid Number</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Full Bath</strong></label><input class="form-control" type="text" placeholder="Full Bath" required [(ngModel)]="model.fullBath" #opCarrier="ngModel" name="fullBath"><small class="text-danger" *ngIf=errFullBath>Please Enter A Valid Number</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Half Bath</strong></label><input class="form-control" type="text" placeholder="Half Bath" required [(ngModel)]="model.halfBath" #opCarrier="ngModel" name="halfBath"><small class="text-danger" *ngIf=errHalfBath>Please Enter A Valid Number</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Bedroom</strong></label><input class="form-control" type="text" placeholder="Bedroom" required [(ngModel)]="model.bedroomAbvGr" #opCarrier="ngModel" name="bedroomAbvGr"><small class="text-danger" *ngIf=errBedroomAbvGr>Please Enter A Valid Number</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Kitchen</strong></label><input class="form-control" type="text" placeholder="Kitchen" required [(ngModel)]="model.kitchenAbvGr" #opCarrier="ngModel" name="kitchenAbvGr"><small class="text-danger" *ngIf=errKitchenAbvGr>Please Enter A Valid Number</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Kitchen Quality</strong></label><select class="form-control" required [(ngModel)]="model.kitchenQual" #opCarrier="ngModel" name="kitchenQual">
+                                                  <option>Select KitchenQual</option>
+                                                  <option>Ex</option>
+                                                  <option>Gd</option>
+                                                  <option>TA</option>
+                                                  <option>Fa</option>
+                                                  <option>Po</option>
+                                                  <option>NA</option>  </select>
+                                                    <small
+                                                        class="text-danger" *ngIf=errKitchenQual>Please Choose An Option</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Total Rooms</strong></label><input class="form-control" type="text" placeholder="Total Rooms" required [(ngModel)]="model.totalRmsAbvGrd" #opCarrier="ngModel" name="totalRmsAbvGrd"><small class="text-danger" *ngIf=errTotRmsAbvGrd>Please Enter A Valid Number</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Heating</strong></label><select class="form-control" required [(ngModel)]="model.heating" #opCarrier="ngModel" name="heating">
+                                                  <option>Select Heating</option>
+                                                  <option>Floor</option>
+                                                  <option>GasA</option>
+                                                  <option>GasW</option>
+                                                  <option>Grav</option>
+                                                  <option>OthW</option>
+                                                  <option>Wall</option></select>
+                                                    <small
+                                                        class="text-danger" *ngIf=errHeating>Please Choose An Option</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Heating QC</strong></label><select class="form-control" required [(ngModel)]="model.heatingQC" #opCarrier="ngModel" name="heatingQC">
+                                                  <option>Select HeatingQC</option>
+                                                  <option>Ex</option>
+                                                  <option>Gd</option>
+                                                  <option>TA</option>
+                                                  <option>Fa</option>
+                                                  <option>Po</option>
+                                                  <option>NA</option></select>
+                                                    <small
+                                                        class="text-danger" *ngIf=errHeatingQC>Please Choose An Option</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Central Air</strong></label><select class="form-control" required [(ngModel)]="model.centralAir" #opCarrier="ngModel" name="centralAir">
+                                                  <option>Select CentralAir</option>
+                                                   <option>N</option>
+                                                   <option>Y</option>    </select>
+                                                    <small
+                                                        class="text-danger" *ngIf=errCentralAir>Please Choose An Option</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Electrical</strong></label><select class="form-control" required [(ngModel)]="model.electrical" #opCarrier="ngModel" name="electrical">
+                                                  <option>Select Electrical</option>
+                                                  <option>SBrkr</option>
+                                                  <option>FuseA</option>
+                                                  <option>FuseF</option>
+                                                  <option>FuseP</option>
+                                                  <option>Mix</option>  </select>
+                                                    <small
+                                                        class="text-danger" *ngIf=errElectrical>Please Choose An Option</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-3">
+                                    <p class="text-primary m-0 font-weight-bold">Prediction Parameter Inputs 2</p>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="username"><strong>Roof Style</strong></label>
+                                                          <select class="form-control" required [(ngModel)]="model.roofStyle" #opCarrier="ngModel" name="roofStyle">
+                                                            <option>Select RoofStyle</option>
+                                                              <option>Flat</option>
+                                                              <option>Gable</option>
+                                                              <option>Gambrel</option>
+                                                              <option>Hip</option>
+                                                              <option>Mansard</option>
+                                                              <option>Shed</option>
+                                                          </select>
+                                                            <small
+                                                                class="text-danger" *ngIf=errRoofStyle>Please Choose An Option</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="username"><strong>Exter Cond</strong></label>
+                                                          <select class="form-control" required [(ngModel)]="model.exterCond" #opCarrier="ngModel" name="exterCond">
+                                                            <option>Select ExterCond</option>
+                                                              <option>Ex</option>
+                                                              <option>Gd</option>
+                                                              <option>TA</option>
+                                                              <option>Fa</option>
+                                                              <option>Po</option>
+                                                              <option>NA</option>
+                                                            </select>
+                                                            <small
+                                                                class="text-danger" *ngIf=errExterCond>Please Choose An Option</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="username"><strong>Foundation</strong></label><select class="form-control" required [(ngModel)]="model.foundation" #opCarrier="ngModel" name="foundation">
+                                                          <option>Select Foundation</option>
+                                                            <option>BrkTil</option>
+                                                            <option>CBlock</option>
+                                                            <option>PConc</option>
+                                                            <option>Slab</option>
+                                                            <option>Stone</option>
+                                                            <option>Wood</option>
+                                                        </select>
+                                                            <small
+                                                                class="text-danger" *ngIf=errFoundation>Please Choose An Option</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="username"><strong>Bsmt Cond</strong></label><select class="form-control" required [(ngModel)]="model.bsmtCond" #opCarrier="ngModel" name="bsmtCond">
+                                                          <option>Select BsmtCond</option>
+                                                            <option>Ex</option>
+                                                            <option>Gd</option>
+                                                            <option>TA</option>
+                                                            <option>Fa</option>
+                                                            <option>Po</option>
+                                                            <option>NA</option>  </select>
+                                                            <small
+                                                                class="text-danger" *ngIf=errBsmtCond>Please Choose An Option</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="username"><strong>Pool Area</strong></label><input class="form-control" type="text" placeholder="Pool Area" required [(ngModel)]="model.poolArea" #opCarrier="ngModel" name="poolArea"><small class="text-danger" *ngIf=errPoolArea>Please Enter A Valid Number</small></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="username"><strong>Pool QC</strong></label><select class="form-control" required [(ngModel)]="model.poolQC" #opCarrier="ngModel" name="poolQC">
+                                                          <option>Select PoolQC</option>
+                                                            <option>Ex</option>
+                                                            <option>Gd</option>
+                                                            <option>TA</option>
+                                                            <option>Fa</option>
+                                                            <option>Po</option>
+                                                            <option>NA</option>  </select>
+                                                            <small
+                                                                class="text-danger" *ngIf=errPoolQC>Please Choose An Option</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="username"><strong>Fireplaces</strong></label><input class="form-control" type="text" placeholder="Fireplaces" required [(ngModel)]="model.fireplaces" #opCarrier="ngModel" name="fireplaces"><small class="text-danger" *ngIf=errFireplaces>Please Enter A Valid Number</small></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="username"><strong>Fireplace QC</strong><br></label><select class="form-control" required [(ngModel)]="model.fireplaceQu" #opCarrier="ngModel" name="fireplaceQu">
+                                                          <option>Select FireplaceQu</option>
+                                                          <option>Ex</option>
+                                                          <option>Gd</option>
+                                                          <option>TA</option>
+                                                          <option>Fa</option>
+                                                          <option>Po</option>
+                                                          <option>NA</option>  </select>
+                                                            <small
+                                                                class="text-danger" *ngIf=errFireplaceQu>Please Choose An Option</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="username"><strong>Garage Type</strong></label><select class="form-control" required [(ngModel)]="model.garageType" #opCarrier="ngModel" name="garageType">
+                                                          <option>Select GarageType</option>
+                                                          <option>2Types</option>
+                                                          <option>Attchd</option>
+                                                          <option>Basment</option>
+                                                          <option>Builtin</option>
+                                                          <option>CarPort</option>
+                                                          <option>Detchd</option>
+                                                          <option>NA</option>  </select>
+                                                            <small
+                                                                class="text-danger" *ngIf=errGarageType>Please Choose An Option</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="username"><strong>Garage Finish</strong></label><select class="form-control" required [(ngModel)]="model.garageFinish" #opCarrier="ngModel" name="garageFinish">
+                                                          <option>Select GarageFinish</option>
+                                                          <option>Fin</option>
+                                                          <option>RFn</option>
+                                                          <option>Unf</option>
+                                                          <option>NA</option></select>
+                                                            <small
+                                                                class="text-danger" *ngIf=errGarageFinish>Please Choose An Option</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="username"><strong>Garage Cars</strong></label><input class="form-control" type="text" placeholder="Garage Cars" required [(ngModel)]="model.garageCars" #opCarrier="ngModel" name="garageCars"><small class="text-danger" *ngIf=errGarageCars>Please Enter A Valid Number</small></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Garage Cond</strong></label><select class="form-control" required [(ngModel)]="model.garageCond" #opCarrier="ngModel" name="garageCond">
+                                                  <option>Select GarageCond</option>
+                                                  <option>Ex</option>
+                                                  <option>Gd</option>
+                                                  <option>TA</option>
+                                                  <option>Fa</option>
+                                                  <option>Po</option>
+                                                  <option>NA</option>  </select>
+                                                    <small
+                                                        class="text-danger" *ngIf=errGarageCond>Please Choose An Option</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Fence</strong></label><select class="form-control" required [(ngModel)]="model.fence" #opCarrier="ngModel" name="fence">
+                                                  <option>Select Fence</option>
+                                                 <option>GdPrv</option>
+                                                 <option>MnPrv</option>
+                                                 <option>GdWo</option>
+                                                 <option>MnWw</option>
+                                                 <option>NA</option>  </select>
+                                                    <small
+                                                        class="text-danger" *ngIf=errFence>Please Choose An Option</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Month Sold</strong></label><input class="form-control" type="text" placeholder="Month Sold" required [(ngModel)]="model.moSold" #opCarrier="ngModel" name="moSold"><small class="text-danger"*ngIf=errMoSold >Please Enter A Valid Number</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Year Sold</strong></label><input class="form-control" type="text" placeholder="Year Sold" required [(ngModel)]="model.yrSold" #opCarrier="ngModel" name="yrSold"><small class="text-danger" *ngIf=errYrSold>Please Enter A Valid Number</small></div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                       <div class="col">
+                           <div class="card shadow mb-3">
+                               <div class="card-header py-3">
+                                   <p class="text-primary m-0 font-weight-bold">Predict Options</p>
+                               </div>
+                               <div class="card-body" style="padding-top: 40px;padding-bottom: 36px;padding-left: 59px;">
+                                   <form>
+                                       <div class="form-row">
+                                           <div class="col">
+                                               <div class="form-group text-center"><button class="btn btn-primary btn-sm border rounded shadow-sm" type="submit" style="width: 150px; height:40px;" (click)="predict()">Predict</button></div>
+                                           </div>
+                                           <div class="col">
+                                               <div class="form-group text-center"><button class="btn btn-outline-primary btn-sm border rounded shadow-sm" type="submit" style="width: 150px; height:40px;" (click)="clear()">Clear</button></div>
+                                           </div>
+                                       </div>
+                                   </form>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+
+                </div>
+            </div>
+        </div>
+
+      </div>
+</div>

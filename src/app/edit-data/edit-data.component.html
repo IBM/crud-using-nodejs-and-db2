@@ -1,0 +1,785 @@
+
+  <div id="page-top">
+    <div class="alert alert-danger" role="alert" *ngIf=errErrorMessage><span><strong>{{errMessage}}</strong></span></div>
+    <div id="wrapper" >
+
+        <div class="d-flex flex-column" id="content-wrapper" style="padding-top:10px;">
+
+            <div id="content" >
+
+
+                <div class="container-fluid" >
+                    <h3 class="text-dark mb-4" >Edit Data</h3>
+                    <h5 class="text-dark mb-4" >Only use the drop-downs for the ones you want to change</h5>
+                    <h1 style="color:#B2B2B2; " *ngIf=showMessage> Loading Data . . .</h1>
+
+                    <div *ngIf=showData>
+
+                      <div class="card shadow mb-3">
+                                           <div class="card-header py-3">
+                                               <p class="text-primary m-0 font-weight-bold">Address Information</p>
+                                           </div>
+                                           <div class="card-body">
+                       <div class="form-row">
+                               <div class="col-md-2 mb-3">
+                                 <label for="address1">Address 1</label>
+                                 <input type="text" class="form-control" id="address1" placeholder="Address1: {{data2['ADDRESS1']}}"  required [(ngModel)]="addressModel.address1" #opCarrier="ngModel" name="address1">
+                                 <small class="text-danger" *ngIf=errAddress1>Please Enter A Valid Address</small>
+                               </div>
+                               <div class="col-md-2 mb-3">
+                                 <label for="address2">Address2</label>
+                                 <input type="text" class="form-control" id="address2"  placeholder="Address2: {{data2['ADDRESS2']}}"  required [(ngModel)]="addressModel.address2" #opCarrier="ngModel" name="address2">
+                                 <small class="text-danger" *ngIf=errAddress2>Please Enter A Valid Address</small>
+                               </div>
+                               <div class="col-md-2 mb-3">
+                                 <label for="city">City</label>
+
+                                   <input type="text" class="form-control" id="city"  aria-describedby="inputGroupPrepend2" placeholder="City: {{data2['CITY']}}"  required [(ngModel)]="addressModel.city" #opCarrier="ngModel" name="city" >
+                                   <small class="text-danger" *ngIf=errCity>Please Enter A Valid City</small>
+
+                               </div>
+                               <div class="col-md-2 mb-3">
+                                 <label for="state">State</label>
+
+                                   <input type="text" class="form-control" id="state"  aria-describedby="inputGroupPrepend2"  placeholder="State: {{data2['STATE']}}"  required [(ngModel)]="addressModel.state" #opCarrier="ngModel" name="state">
+                                     <small class="text-danger" *ngIf=errState>Please Enter A Valid State</small>
+
+                               </div>
+                               <div class="col-md-2 mb-3">
+                                 <label for="zipcode">Zipcode</label>
+
+                                   <input type="text" class="form-control" id="zipcode" aria-describedby="inputGroupPrepend2"  placeholder="ZipCode: {{data2['ZIPCODE']}}"  required [(ngModel)]="addressModel.zipcode" #opCarrier="ngModel" name="zipcode">
+                                   <small class="text-danger" *ngIf=errZipCode>Please Enter A Valid ZipCode</small>
+
+                               </div>
+                               <div class="col-md-2 mb-3">
+                                 <label for="country">Country</label>
+
+                                   <input type="text" class="form-control" id="country" placeholder="USA" aria-describedby="inputGroupPrepend2" placeholder="Country: {{data2['COUNTRY']}}"  required [(ngModel)]="addressModel.country" #opCarrier="ngModel" name="country">
+                                     <small class="text-danger" *ngIf=errCountry>Please Enter A Valid Country</small>
+
+                               </div>
+                             </div>
+                           </div>
+                           </div>
+
+
+
+
+
+
+                    <div class="card shadow mb-3">
+                                         <div class="card-header py-3">
+                                             <p class="text-primary m-0 font-weight-bold">General Information</p>
+                                         </div>
+                                         <div class="card-body">
+                     <div class="form-row">
+                             <div class="col-md-2 mb-3">
+                               <label for="username"><strong>Lot Area</strong></label>
+                                   <input class="form-control" type="text" placeholder="LotArea: {{data['LOTAREA']}}"  required [(ngModel)]="model.lotArea" #opCarrier="ngModel" name="lotArea">
+                                   <small class="text-danger" *ngIf=errLotArea>Please Enter A Valid Number</small></div>
+                             <div class="col-md-2 mb-3">
+                               <label for="first_name"><strong>Bldg Style</strong></label>
+                                   <select class="form-control" required [(ngModel)]="model.bldgType" #opCarrier="ngModel" name="bldgType">
+
+                                     <option> Select BldgType</option>
+                                      <option>1Fam</option>
+                                      <option>2FmCon</option>
+                                      <option>Duplx</option>
+                                      <option>TwnhsE</option>
+                                      <option>TwnhsI</option>
+
+                                   </select>   </div>
+                             <div class="col-md-2 mb-3">
+                               <label for="first_name"><strong>House Style</strong></label><select class="form-control" required [(ngModel)]="model.houseStyle" #opCarrier="ngModel" name="houseStyle">
+                                 <option>Select HouseStyle</option>
+                                 <option>1Story</option>
+                                 <option>1.5Fin</option>
+                                 <option>1.5Unf</option>
+                                 <option>2Story</option>
+                                 <option>2.5Fin</option>
+                                 <option>2.5Unf</option>
+                                 <option>SFoyer</option>
+                                 <option>SLvl</option>
+                               </select>   </div>
+                             <div class="col-md-2 mb-3">
+                               <label for="first_name"><strong>Overall Cond</strong></label><input class="form-control" type="text" placeholder="OverallCond: {{data['OVERALLCOND']}}" required [(ngModel)]="model.overallCond" #opCarrier="ngModel" name="overallCond"><small class="text-danger" *ngIf=errOverallCond>Please Enter A Valid Number</small>
+
+                             </div>
+                             <div class="col-md-2 mb-3">
+                               <label for="first_name"><strong>Year Built</strong></label><input class="form-control" type="text" placeholder="YearBuilt: {{data['YEARBUILT']}}" required [(ngModel)]="model.yearBuilt" #opCarrier="ngModel" name="yearBuilt"><small class="text-danger" *ngIf=errYearBuilt>Please Enter A Valid Number</small>
+                             </div>
+                           </div>
+                         </div>
+                         </div>
+
+                         <div class="card shadow mb-3">
+                                              <div class="card-header py-3">
+                                                  <p class="text-primary m-0 font-weight-bold">Rooms</p>
+                                              </div>
+                                              <div class="card-body">
+                          <div class="form-row">
+                                  <div class="col-md-2 mb-3">
+                                    <label for="username"><strong>Full Bath</strong></label><input class="form-control" type="text" placeholder="FullBath: {{data['FULLBATH']}}" required [(ngModel)]="model.fullBath" #opCarrier="ngModel" name="fullBath"><small class="text-danger" *ngIf=errFullBath>Please Enter A Valid Number</small>
+                                </div>
+                                  <div class="col-md-2 mb-3">
+                                    <label for="username"><strong>Half Bath</strong></label><input class="form-control" type="text" placeholder="HalfBath: {{data['HALFBATH']}}" required [(ngModel)]="model.halfBath" #opCarrier="ngModel" name="halfBath"><small class="text-danger" *ngIf=errHalfBath>Please Enter A Valid Number</small>
+                                </div>
+                                  <div class="col-md-2 mb-3">
+                                    <label for="username"><strong>Bedroom Above Ground</strong></label><input class="form-control" type="text" placeholder="BedroomAbvGr: {{data['BEDROOMABVGR']}}" required [(ngModel)]="model.bedroomAbvGr" #opCarrier="ngModel" name="bedroomAbvGr"><small class="text-danger" *ngIf=errBedroomAbvGr>Please Enter A Valid Number</small>
+
+                                  </div>
+                                  <div class="col-md-2 mb-3">
+                                    <label for="username"><strong>Kitchen Above Ground</strong></label><input class="form-control" type="text" placeholder="KitchenAbvGr: {{data['KITCHENABVGR']}}" required [(ngModel)]="model.kitchenAbvGr" #opCarrier="ngModel" name="kitchenAbvGr"><small class="text-danger" *ngIf=errKitchenAbvGr>Please Enter A Valid Number</small>
+
+                                  </div>
+                                  <div class="col-md-2 mb-3">
+                                    <label for="username"><strong>Kitchen Quality</strong></label><select class="form-control" required [(ngModel)]="model.kitchenQual" #opCarrier="ngModel" name="kitchenQual">
+                                      <option>Select KitchenQual</option>
+                                      <option>Ex</option>
+                                      <option>Gd</option>
+                                      <option>TA</option>
+                                      <option>Fa</option>
+                                      <option>Po</option>
+                                      <option>NA</option>
+                                    </select>
+                                  </div>
+
+                                </div>
+                              </div>
+                              </div>
+
+                              <div class="card shadow mb-3">
+                                                   <div class="card-header py-3">
+                                                       <p class="text-primary m-0 font-weight-bold">Utilities</p>
+                                                   </div>
+                                                   <div class="card-body">
+                               <div class="form-row">
+                                       <div class="col-md-2 mb-3">
+                                         <label for="email"><strong>Total Rooms AbvGr</strong></label><input class="form-control" type="email" placeholder="TotRmsAbvGrd: {{data['TOTRMSABVGRD']}}" required [(ngModel)]="model.tempotRmsAbvGrd" #opCarrier="ngModel" name="tempotRmsAbvGrd"><small class="text-danger" *ngIf=errTotRmsAbvGrd>Please Enter A Valid Number</small>
+                                      </div>
+                                       <div class="col-md-2 mb-3">
+                                         <label for="email"><strong>Heating</strong></label><select class="form-control" required [(ngModel)]="model.heating" #opCarrier="ngModel" name="heating">
+                                           <option>Select Heating</option>
+                                           <option>Floor</option>
+                                           <option>GasA</option>
+                                           <option>GasW</option>
+                                           <option>Grav</option>
+                                           <option>OthW</option>
+                                           <option>Wall</option>
+                                         </select>     </div>
+                                       <div class="col-md-2 mb-3">
+                                         <label for="email"><strong>Heating QC</strong></label><select class="form-control" required [(ngModel)]="model.heatingQC" #opCarrier="ngModel" name="heatingQC">
+                                           <option>Select HeatingQC</option>
+                                           <option>Ex</option>
+                                           <option>Gd</option>
+                                           <option>TA</option>
+                                           <option>Fa</option>
+                                           <option>Po</option>
+                                           <option>NA</option>
+                                          </select>
+                                       </div>
+
+                                       <div class="col-md-2 mb-3">
+                                         <label for="email"><strong>Central Air</strong></label><select class="form-control" required [(ngModel)]="model.centralAir" #opCarrier="ngModel" name="centralAir">
+                                           <option>Select CentralAir</option>
+                                            <option>N</option>
+                                            <option>Y</option>
+                                         </select>
+                                       </div>
+                                       <div class="col-md-2 mb-3">
+                                         <label for="email"><strong>Electrical</strong></label><select class="form-control" required [(ngModel)]="model.electrical" #opCarrier="ngModel" name="electrical">
+                                           <option>Select Electrical</option>
+                                           <option>SBrkr</option>
+                                           <option>FuseA</option>
+                                           <option>FuseF</option>
+                                           <option>FuseP</option>
+                                           <option>Mix</option>
+                                         </select>
+                                       </div>
+                                     </div>
+                                   </div>
+                                   </div>
+
+                                   <div class="card shadow mb-3">
+                                                        <div class="card-header py-3">
+                                                            <p class="text-primary m-0 font-weight-bold">Exterior</p>
+                                                        </div>
+                                                        <div class="card-body">
+                                    <div class="form-row">
+                                            <div class="col-md-2 mb-3">
+                                              <label for="country"><strong>Roof Style</strong></label><select class="form-control" required [(ngModel)]="model.roofStyle" #opCarrier="ngModel" name="roofStyle">
+                                                <option>Select RoofStyle</option>
+                                                  <option>Flat</option>
+                                                  <option>Gable</option>
+                                                  <option>Gambrel</option>
+                                                  <option>Hip</option>
+                                                  <option>Mansard</option>
+                                                  <option>Shed</option>
+                                                  </select>      </div>
+                                            <div class="col-md-2 mb-3">
+                                              <label for="country"><strong>Exter Condition</strong></label><select class="form-control" required [(ngModel)]="model.exterCond" #opCarrier="ngModel" name="exterCond">
+                                                <option>Select ExterCond</option>
+                                                  <option>Ex</option>
+                                                  <option>Gd</option>
+                                                  <option>TA</option>
+                                                  <option>Fa</option>
+                                                  <option>Po</option>
+                                                  <option>NA</option>
+                                                  </select>      </div>
+                                            <div class="col-md-2 mb-3">
+                                              <label for="country"><strong>Foundation</strong></label><select class="form-control" required [(ngModel)]="model.foundation" #opCarrier="ngModel" name="foundation">
+                                                <option>Select Foundation</option>
+                                                  <option>BrkTil</option>
+                                                  <option>CBlock</option>
+                                                  <option>PConc</option>
+                                                  <option>Slab</option>
+                                                  <option>Stone</option>
+                                                  <option>Wood</option>
+                                                   </select>
+                                            </div>
+                                            <div class="col-md-2 mb-3">
+                                              <label for="country"><strong>Bsmt Contition</strong></label><select class="form-control" required [(ngModel)]="model.bsmtCond" #opCarrier="ngModel" name="bsmtCond">
+                                                <option>Select BsmtCond</option>
+                                                  <option>Ex</option>
+                                                  <option>Gd</option>
+                                                  <option>TA</option>
+                                                  <option>Fa</option>
+                                                  <option>Po</option>
+                                                  <option>NA</option>
+                                                  </select>
+                                            </div>
+                                            <div class="col-md-2 mb-3">
+                                              <label for="country"><strong>Pool Area</strong></label><input class="form-control" type="text" placeholder="PoolArea: {{data['POOLAREA']}}" required [(ngModel)]="model.poolArea" #opCarrier="ngModel" name="poolArea"><small class="text-danger"*ngIf=errPoolArea>Please Enter A Valid Number</small>
+
+                                            </div>
+                                            <div class="col-md-2 mb-3">
+                                              <label for="country"><strong>Pool QC</strong></label><select class="form-control" required [(ngModel)]="model.poolQC" #opCarrier="ngModel" name="poolQC">
+                                                <option>Select PoolQC</option>
+                                                  <option>Ex</option>
+                                                  <option>Gd</option>
+                                                  <option>TA</option>
+                                                  <option>Fa</option>
+                                                  <option>Po</option>
+                                                  <option>NA</option>
+                                                   </select>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="card shadow mb-3">
+                                                             <div class="card-header py-3">
+                                                                 <p class="text-primary m-0 font-weight-bold">Exterior 2</p>
+                                                             </div>
+                                                             <div class="card-body">
+                                         <div class="form-row">
+                                                 <div class="col-md-2 mb-3">
+                                                   <label for="country"><strong>Fireplaces</strong></label><input class="form-control" type="text" placeholder="Fireplaces: {{data['FIREPLACES']}}" required [(ngModel)]="model.fireplaces" #opCarrier="ngModel" name="fireplaces"><small class="text-danger" *ngIf=errFireplaces>Please Enter A Valid Number</small>
+                                                  </div>
+                                                 <div class="col-md-2 mb-3">
+                                                   <label for="country"><strong>Fireplace Quality</strong></label><select class="form-control" required [(ngModel)]="model.fireplaceQu" #opCarrier="ngModel" name="fireplaceQu">
+                                                     <option>Select FireplaceQu</option>
+                                                     <option>Ex</option>
+                                                     <option>Gd</option>
+                                                     <option>TA</option>
+                                                     <option>Fa</option>
+                                                     <option>Po</option>
+                                                     <option>NA</option>
+                                                   </select>     </div>
+                                                 <div class="col-md-2 mb-3">
+                                                   <label for="country"><strong>Garage Type</strong><br></label><select class="form-control" required [(ngModel)]="model.garageType" #opCarrier="ngModel" name="garageType">
+                                                     <option>Select GarageType</option>
+                                                     <option>2Types</option>
+                                                     <option>Attchd</option>
+                                                     <option>Basment</option>
+                                                     <option>Builtin</option>
+                                                     <option>CarPort</option>
+                                                     <option>Detchd</option>
+                                                     <option>NA</option>
+                                                   </select>     </div>
+                                                 <div class="col-md-2 mb-3">
+                                                   <label for="country"><strong>Garage Finish</strong></label><select class="form-control" required [(ngModel)]="model.garageFinish" #opCarrier="ngModel" name="garageFinish">
+                                                     <option>Select GarageFinish</option>
+                                                     <option>Fin</option>
+                                                     <option>RFn</option>
+                                                     <option>Unf</option>
+                                                     <option>NA</option>
+                                                   </select>
+                                                 </div>
+                                                 <div class="col-md-2 mb-3">
+                                                   <label for="country"><strong>Garage Cars</strong></label><input class="form-control" type="text" placeholder="GarageCars: {{data['GARAGECARS']}}" required [(ngModel)]="model.garageCars" #opCarrier="ngModel" name="garageCars"><small class="text-danger" *ngIf=errGarageCars>Please Enter A Valid Number</small>
+
+                                                 </div>
+                                                 <div class="col-md-2 mb-3">
+                                                   <label for="country"><strong>Garage Condition</strong></label><select class="form-control" required [(ngModel)]="model.garageCond" #opCarrier="ngModel" name="garageCond">
+                                                     <option>Select GarageCond</option>
+                                                     <option>Ex</option>
+                                                     <option>Gd</option>
+                                                     <option>TA</option>
+                                                     <option>Fa</option>
+                                                     <option>Po</option>
+                                                     <option>NA</option>
+                                                   </select>
+                                                 </div>
+                                               </div>
+                                             </div>
+                                             </div>
+
+
+
+                                             <div class="card shadow mb-3">
+                                                                  <div class="card-header py-3">
+                                                                      <p class="text-primary m-0 font-weight-bold">Purchase Information</p>
+                                                                  </div>
+                                                                  <div class="card-body">
+                                              <div class="form-row">
+                                                      <div class="col-md-2 mb-3">
+                                                        <label for="country"><strong>Fences</strong></label><select class="form-control" required [(ngModel)]="model.fence" #opCarrier="ngModel" name="fence">
+                                                          <option>Select Fence</option>
+                                                         <option>GdPrv</option>
+                                                         <option>MnPrv</option>
+                                                         <option>GdWo</option>
+                                                         <option>MnWw</option>
+                                                         <option>NA</option>
+                                                        </select>    </div>
+                                                      <div class="col-md-2 mb-3">
+                                                        <label for="country"><strong>Month Sold</strong></label><input class="form-control" type="text" placeholder="MoSold: {{data['MOSOLD']}}" required [(ngModel)]="model.moSold" #opCarrier="ngModel" name="moSold"><small class="text-danger" *ngIf=errMoSold>Please Enter A Valid Number</small>
+                                                  </div>
+                                                      <div class="col-md-2 mb-3">
+                                                        <label for="country"><strong>Year Sold</strong></label><input class="form-control" type="text" placeholder="YrSold: {{data['YRSOLD']}}" required [(ngModel)]="model.yrSold" #opCarrier="ngModel" name="yrSold"><small class="text-danger" *ngIf=errYrSold>Please Enter A Valid Number</small>
+
+                                                      </div>
+                                                      <div class="col-md-2 mb-3">
+                                                        <label for="country"><strong>Sale Price</strong></label><input class="form-control" type="text" placeholder="SalePrice: {{data['SALEPRICE']}}" required [(ngModel)]="model.salePrice" #opCarrier="ngModel" name="salePrice"><small class="text-danger" *ngIf=errSalePrice>Please Enter A Valid Number</small>
+
+                                                      </div>
+                                                      <div class="col-md-2 mb-3" style="margin-top:35px;, margin-left:15px;">
+                                                      <button class="btn btn-primary btn-sm" type="submit" (click)=submitData()>UPDATE DATA</button>
+                                                      </div>
+
+                                                    </div>
+                                                  </div>
+                                                  </div>
+
+                         </div>
+<!--
+                    <div class="row mb-3" *ngIf=showData>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card shadow mb-3">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 font-weight-bold">General Information</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="username"><strong>Lot Area</strong></label>
+                                                            <input class="form-control" type="text" placeholder="LotArea: {{data['LOTAREA']}}"  required [(ngModel)]="model.lotArea" #opCarrier="ngModel" name="lotArea">
+                                                            <small class="text-danger" *ngIf=errLotArea>Please Enter A Valid Number</small></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="first_name"><strong>Bldg Style</strong></label>
+                                                            <select class="form-control" required [(ngModel)]="model.bldgType" #opCarrier="ngModel" name="bldgType">
+
+                                                              <option> Select BldgType</option>
+                                                               <option>1Fam</option>
+                                                               <option>2FmCon</option>
+                                                               <option>Duplx</option>
+                                                               <option>TwnhsE</option>
+                                                               <option>TwnhsI</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="first_name"><strong>House Style</strong></label><select class="form-control" required [(ngModel)]="model.houseStyle" #opCarrier="ngModel" name="houseStyle">
+                                                          <option>Select HouseStyle</option>
+                                                          <option>1Story</option>
+                                                          <option>1.5Fin</option>
+                                                          <option>1.5Unf</option>
+                                                          <option>2Story</option>
+                                                          <option>2.5Fin</option>
+                                                          <option>2.5Unf</option>
+                                                          <option>SFoyer</option>
+                                                          <option>SLvl</option>
+
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="first_name"><strong>Overall Cond</strong></label><input class="form-control" type="text" placeholder="OverallCond: {{data['OVERALLCOND']}}" required [(ngModel)]="model.overallCond" #opCarrier="ngModel" name="overallCond"><small class="text-danger" *ngIf=errOverallCond>Please Enter A Valid Number</small>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="first_name"><strong>Year Built</strong></label><input class="form-control" type="text" placeholder="YearBuilt: {{data['YEARBUILT']}}" required [(ngModel)]="model.yearBuilt" #opCarrier="ngModel" name="yearBuilt"><small class="text-danger" *ngIf=errYearBuilt>Please Enter A Valid Number</small>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="card shadow">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 font-weight-bold">Exterior</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="country"><strong>Roof Style</strong></label><select class="form-control" required [(ngModel)]="model.roofStyle" #opCarrier="ngModel" name="roofStyle">
+                                                          <option>Select RoofStyle</option>
+                                                            <option>Flat</option>
+                                                            <option>Gable</option>
+                                                            <option>Gambrel</option>
+                                                            <option>Hip</option>
+                                                            <option>Mansard</option>
+                                                            <option>Shed</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="country"><strong>Exter Condition</strong></label><select class="form-control" required [(ngModel)]="model.exterCond" #opCarrier="ngModel" name="exterCond">
+                                                          <option>Select ExterCond</option>
+                                                            <option>Ex</option>
+                                                            <option>Gd</option>
+                                                            <option>TA</option>
+                                                            <option>Fa</option>
+                                                            <option>Po</option>
+                                                            <option>NA</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="country"><strong>Foundation</strong></label><select class="form-control" required [(ngModel)]="model.foundation" #opCarrier="ngModel" name="foundation">
+                                                          <option>Select Foundation</option>
+                                                            <option>BrkTil</option>
+                                                            <option>CBlock</option>
+                                                            <option>PConc</option>
+                                                            <option>Slab</option>
+                                                            <option>Stone</option>
+                                                            <option>Wood</option>
+                                                             </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="country"><strong>Bsmt Contition</strong></label><select class="form-control" required [(ngModel)]="model.bsmtCond" #opCarrier="ngModel" name="bsmtCond">
+                                                          <option>Select BsmtCond</option>
+                                                            <option>Ex</option>
+                                                            <option>Gd</option>
+                                                            <option>TA</option>
+                                                            <option>Fa</option>
+                                                            <option>Po</option>
+                                                            <option>NA</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="country"><strong>Pool Area</strong></label><input class="form-control" type="text" placeholder="PoolArea: {{data['POOLAREA']}}" required [(ngModel)]="model.poolArea" #opCarrier="ngModel" name="poolArea"><small class="text-danger"*ngIf=errPoolArea>Please Enter A Valid Number</small>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="country"><strong>Pool QC</strong></label><select class="form-control" required [(ngModel)]="model.poolQC" #opCarrier="ngModel" name="poolQC">
+                                                          <option>Select PoolQC</option>
+                                                            <option>Ex</option>
+                                                            <option>Gd</option>
+                                                            <option>TA</option>
+                                                            <option>Fa</option>
+                                                            <option>Po</option>
+                                                            <option>NA</option>
+                                                             </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card shadow mb-3">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 font-weight-bold">Rooms</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="username"><strong>Full Bath</strong></label><input class="form-control" type="text" placeholder="FullBath: {{data['FULLBATH']}}" required [(ngModel)]="model.fullBath" #opCarrier="ngModel" name="fullBath"><small class="text-danger" *ngIf=errFullBath>Please Enter A Valid Number</small>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="username"><strong>Half Bath</strong></label><input class="form-control" type="text" placeholder="HalfBath: {{data['HALFBATH']}}" required [(ngModel)]="model.halfBath" #opCarrier="ngModel" name="halfBath"><small class="text-danger" *ngIf=errHalfBath>Please Enter A Valid Number</small>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="username"><strong>Bedroom Above Ground</strong></label><input class="form-control" type="text" placeholder="BedroomAbvGr: {{data['BEDROOMABVGR']}}" required [(ngModel)]="model.bedroomAbvGr" #opCarrier="ngModel" name="bedroomAbvGr"><small class="text-danger" *ngIf=errBedroomAbvGr>Please Enter A Valid Number</small>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="username"><strong>Kitchen Above Ground</strong></label><input class="form-control" type="text" placeholder="KitchenAbvGr: {{data['KITCHENABVGR']}}" required [(ngModel)]="model.kitchenAbvGr" #opCarrier="ngModel" name="kitchenAbvGr"><small class="text-danger" *ngIf=errKitchenAbvGr>Please Enter A Valid Number</small>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="username"><strong>Kitchen Quality</strong></label><select class="form-control" required [(ngModel)]="model.kitchenQual" #opCarrier="ngModel" name="kitchenQual">
+                                                          <option>Select KitchenQual</option>
+                                                          <option>Ex</option>
+                                                          <option>Gd</option>
+                                                          <option>TA</option>
+                                                          <option>Fa</option>
+                                                          <option>Po</option>
+                                                          <option>NA</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="card shadow">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 font-weight-bold">Exterior 2</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="country"><strong>Fireplaces</strong></label><input class="form-control" type="text" placeholder="Fireplaces: {{data['FIREPLACES']}}" required [(ngModel)]="model.fireplaces" #opCarrier="ngModel" name="fireplaces"><small class="text-danger" *ngIf=errFireplaces>Please Enter A Valid Number</small>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="country"><strong>Fireplace Quality</strong></label><select class="form-control" required [(ngModel)]="model.fireplaceQu" #opCarrier="ngModel" name="fireplaceQu">
+                                                          <option>Select FireplaceQu</option>
+                                                          <option>Ex</option>
+                                                          <option>Gd</option>
+                                                          <option>TA</option>
+                                                          <option>Fa</option>
+                                                          <option>Po</option>
+                                                          <option>NA</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="country"><strong>Garage Type</strong><br></label><select class="form-control" required [(ngModel)]="model.garageType" #opCarrier="ngModel" name="garageType">
+                                                          <option>Select GarageType</option>
+                                                          <option>2Types</option>
+                                                          <option>Attchd</option>
+                                                          <option>Basment</option>
+                                                          <option>Builtin</option>
+                                                          <option>CarPort</option>
+                                                          <option>Detchd</option>
+                                                          <option>NA</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="country"><strong>Garage Finish</strong></label><select class="form-control" required [(ngModel)]="model.garageFinish" #opCarrier="ngModel" name="garageFinish">
+                                                          <option>Select GarageFinish</option>
+                                                          <option>Fin</option>
+                                                          <option>RFn</option>
+                                                          <option>Unf</option>
+                                                          <option>NA</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="country"><strong>Garage Cars</strong></label><input class="form-control" type="text" placeholder="GarageCars: {{data['GARAGECARS']}}" required [(ngModel)]="model.garageCars" #opCarrier="ngModel" name="garageCars"><small class="text-danger" *ngIf=errGarageCars>Please Enter A Valid Number</small>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="country"><strong>Garage Condition</strong></label><select class="form-control" required [(ngModel)]="model.garageCond" #opCarrier="ngModel" name="garageCond">
+                                                          <option>Select GarageCond</option>
+                                                          <option>Ex</option>
+                                                          <option>Gd</option>
+                                                          <option>TA</option>
+                                                          <option>Fa</option>
+                                                          <option>Po</option>
+                                                          <option>NA</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card shadow mb-3">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 font-weight-bold">Utilities</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="email"><strong>Total Rooms Above Ground</strong></label><input class="form-control" type="email" placeholder="TotRmsAbvGrd: {{data['TOTRMSABVGRD']}}" required [(ngModel)]="model.tempotRmsAbvGrd" #opCarrier="ngModel" name="tempotRmsAbvGrd"><small class="text-danger" *ngIf=errTotRmsAbvGrd>Please Enter A Valid Number</small>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="email"><strong>Heating</strong></label><select class="form-control" required [(ngModel)]="model.heating" #opCarrier="ngModel" name="heating">
+                                                          <option>Select Heating</option>
+                                                          <option>Floor</option>
+                                                          <option>GasA</option>
+                                                          <option>GasW</option>
+                                                          <option>Grav</option>
+                                                          <option>OthW</option>
+                                                          <option>Wall</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="email"><strong>Heating QC</strong></label><select class="form-control" required [(ngModel)]="model.heatingQC" #opCarrier="ngModel" name="heatingQC">
+                                                          <option>Select HeatingQC</option>
+                                                          <option>Ex</option>
+                                                          <option>Gd</option>
+                                                          <option>TA</option>
+                                                          <option>Fa</option>
+                                                          <option>Po</option>
+                                                          <option>NA</option>
+                                                         </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="email"><strong>Central Air</strong></label><select class="form-control" required [(ngModel)]="model.centralAir" #opCarrier="ngModel" name="centralAir">
+                                                          <option>Select CentralAir</option>
+                                                           <option>N</option>
+                                                           <option>Y</option>
+                                                        </select>
+                                                            <small
+                                                                class="text-danger" *ngIf=errCentralAir>Please Choose An Option</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="email"><strong>Electrical</strong></label><select class="form-control" required [(ngModel)]="model.electrical" #opCarrier="ngModel" name="electrical">
+                                                          <option>Select Electrical</option>
+                                                          <option>SBrkr</option>
+                                                          <option>FuseA</option>
+                                                          <option>FuseF</option>
+                                                          <option>FuseP</option>
+                                                          <option>Mix</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="card shadow">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 font-weight-bold">Purchase Information</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="country"><strong>Fences</strong></label><select class="form-control" required [(ngModel)]="model.fence" #opCarrier="ngModel" name="fence">
+                                                          <option>Select Fence</option>
+                                                         <option>GdPrv</option>
+                                                         <option>MnPrv</option>
+                                                         <option>GdWo</option>
+                                                         <option>MnWw</option>
+                                                         <option>NA</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="country"><strong>Month Sold</strong></label><input class="form-control" type="text" placeholder="MoSold: {{data['MOSOLD']}}" required [(ngModel)]="model.moSold" #opCarrier="ngModel" name="moSold"><small class="text-danger" *ngIf=errMoSold>Please Enter A Valid Number</small>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="country"><strong>Year Sold</strong></label><input class="form-control" type="text" placeholder="YrSold: {{data['YRSOLD']}}" required [(ngModel)]="model.yrSold" #opCarrier="ngModel" name="yrSold"><small class="text-danger" *ngIf=errYrSold>Please Enter A Valid Number</small>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="country"><strong>Sale Price</strong></label><input class="form-control" type="text" placeholder="SalePrice: {{data['SALEPRICE']}}" required [(ngModel)]="model.salePrice" #opCarrier="ngModel" name="salePrice"><small class="text-danger" *ngIf=errSalePrice>Please Enter A Valid Number</small>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit" (click)=submitData()>UPDATE DATA</button></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
