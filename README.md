@@ -1,15 +1,15 @@
-# Create a CRUD application using nodejs and IBM Db2 Warehouse on Cloud
+# Create a CRUD application using Node.js and IBM Db2 Warehouse on Cloud
 
-This is an application which uses nodejs to connect to IBM Db2 Warehouse on cloud for CRUD(create, update, delete) operations. The application showcases how you can create a high performant CRUD application using nodejs and IBM Db2 Warehouse on cloud.
+This is an application which uses Node.js to connect to IBM Db2 Warehouse on Cloud for CRUD(create, update, delete) operations. The application showcases how you can create a high performant CRUD application using Node.js and IBM Db2 Warehouse on Cloud.
 
 ## Flow
 
 > ![Architecture Diagram](doc/source/images/architecture.png)
 
-1. Create schema and tables necessary for storing data in IBM DB2 Warehouse on cloud.
-2. Nodejs webapp that use node Db2 driver to connect to the database.
-3. Nodejs app exposes API to interact with IBM Db2 Warehouse on cloud.
-4. An Angular frontend application to collect home sales data and call API to store that data to IBM Db2 Warehouse on cloud.
+1. Create schema and tables necessary for storing data in IBM Db2 Warehouse on Cloud.
+2. Node.js webapp that use node Db2 driver to connect to the database.
+3. Node.js app exposes API to interact with IBM Db2 Warehouse on Cloud.
+4. An Angular frontend application to collect home sales data and call API to store that data to IBM Db2 Warehouse on Cloud.
 
 ## Steps
 
@@ -42,7 +42,7 @@ In the Db2 warehouse resource page, click on `Manage` and go to DB2 console by c
 * Make sure the column names and data types displayed are correct, then cick `Next`
 * Click `Begin Load` to load the data
 
-Once this is done it will create a table `HOME_SALES` under schema `DB2WML` which will be used by the nodejs application.
+Once this is done it will create a table `HOME_SALES` under schema `DB2WML` which will be used by the Node.js application.
 
 ### 4. Add Db2 credentials to .env file
 
