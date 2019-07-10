@@ -1,3 +1,5 @@
+//@author Rohith Ravindranath
+//@version July 10 2019
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { HttpService }  from '../http.service';
@@ -244,7 +246,7 @@ export class LoadDataComponent implements OnInit {
 
     if (this.addressModel.address1 == ''){  this.errAddress1 = true; this.validate_inputs=false; }
     else{ this.errAddress1 = false;}
-    
+
     if (this.addressModel.city == ''){  this.errCity = true; this.validate_inputs=false; }
     else{ this.errCity = false;}
     if (this.addressModel.state== ''){  this.errState = true; this.validate_inputs=false; }

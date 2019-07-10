@@ -1,3 +1,7 @@
+//Server for API call to database
+//@author Rohith Ravindranath
+//@version July 10 2019
+
 require('dotenv').config()
 var express=require('express');
 var app=express();
