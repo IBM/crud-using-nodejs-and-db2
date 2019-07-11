@@ -109,7 +109,6 @@ export class EditDataComponent implements OnInit {
         console.log('rowID: ' + this.rowID);
       })
       this.getDataEntry();
-      console.log(this.model);
   }
 
 
@@ -264,6 +263,7 @@ export class EditDataComponent implements OnInit {
           console.log(data['message']);
         }
         else{
+          console.log(data['message']);
           localStorage.setItem("dataUpdated","true");
           this._router.navigate(['/viewData']);
         }
@@ -279,10 +279,14 @@ export class EditDataComponent implements OnInit {
         console.log(data['message']);
       }
       else{
+
+
         this.data = data['data'][0];
         this.data2 = data['data2'][0];
         this.showMessage = false;
         this.showData = true;
+        console.log(this.data2);
+        console.log(this.data);
 
       }
     })
