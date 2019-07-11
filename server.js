@@ -261,14 +261,20 @@ app.get('/predict', function(request, response){
 
 app.post('/geocode', function(request, response){
     // Using callback
-  geocoder.geocode(request.body.address1 + ", " + request.body.city + ", " + request.body.state + ", " + request.body.zipcode, function(err, res) {
-    if (err){
-        return response.json({success:-2, message:err});
-    }
-    else{
-      return response.json({success:1, message:"WE DID IT", data:res} );
-    }
-  });
+  if (request.body.address1 == ''){
+    return response.json({success:1, message:"no address"});
+  }
+  else {
+    geocoder.geocode(request.body.address1 + ", " + request.body.city + ", " + request.body.state + ", " + request.body.zipcode, function(err, res) {
+      if (err){
+          return response.json({success:-2, message:err});
+      }
+      else{
+        return response.json({success:1, message:"WE DID IT", data:res} );
+      }
+    });
+  }
+
 })
 
 
