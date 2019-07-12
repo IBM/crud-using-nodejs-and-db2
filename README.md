@@ -14,7 +14,7 @@ This is an application which uses Node.js to connect to IBM Db2 Warehouse on Clo
 ## Steps
 
 1. [Clone The Repo](#1-clone-the-repo)
-2. [Create IBM Db2 (Db2 Warehouse on Cloud or Db2 Docker Image)](#2-create-ibm-db2-(db2-warehouse-on-cloud-or-db2-docker-image))
+2. [Create IBM Db2 (Db2 Warehouse on Cloud or Db2 Docker Image)](#2-create-ibm-db2)
 3. [Create Schema and Tables](#3-create-schema-and-tables)
 4. [Add Db2 Credentials to .env File](#4-add-db2-credentials-to-env-file)
 5. [Run The Application](#5-run-the-application)
@@ -25,7 +25,7 @@ This is an application which uses Node.js to connect to IBM Db2 Warehouse on Clo
 git clone https://github.com/IBM/crud-using-nodejs-and-db2.git
 ```
 
-### 2. Create IBM Db2 (Db2 Warehouse on Cloud or Db2 Docker Image)
+### 2. Create IBM Db2
 
 Once we have cloned our repository, the next thing we have to do is create our database that will hold our house sales data. There are two ways we can create our database. One way is creating IBM Db2 Warehouse on Cloud. This database will be hosted on the cloud. However, if you perfer to have your database on premise or locally, we can all use the Db2 Docker Image. 
  
