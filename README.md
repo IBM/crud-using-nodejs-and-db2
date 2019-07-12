@@ -32,7 +32,7 @@ Once we have cloned our repository, the next thing we have to do is create our d
 Choose which type of database you would like and follow the corresponding instructions:
 
 1. [Create IBM Db2 Warehouse on Cloud](#2a-create-ibm-db2-warehouse-on-cloud)
-2. [Create an IBM Db2 Docker Image](#2b-create-an-ibm-db2-on-premise-database)
+2. [Create IBM Db2 Database Locally Using Docker Image](#2b-create-an-ibm-db2-on-premise-database)
 
 #### 2a. Create IBM Db2 Warehouse on Cloud
 
@@ -82,7 +82,7 @@ Depending on which type you have (Cloud or On-Premise), the steps will be a litt
 2. [Create Schema and Tables for IBM Db2 Docker Image](#3b-create-schema-and-tables-for-ibm-db2-docker-image)
 
 
-#### 3a Create Schema and Tables for IBM Db2 Warehouse on Cloud
+#### 3a. Create Schema and Tables for IBM Db2 Warehouse on Cloud
 
 In the Db2 warehouse resource page, click on `Manage` and go to DB2 console by clicking the button `Open Console`. In the console do the following to load your data.
 
