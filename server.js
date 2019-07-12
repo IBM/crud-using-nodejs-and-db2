@@ -83,7 +83,6 @@ let connStr = "DATABASE="+process.env.DB_DATABASE+";HOSTNAME="+process.env.DB_HO
 
 app.post('/getData', function(request, response){
   console.log('GET DATA API CALL:');
-  console.log(request);
    ibmdb.open(connStr, function (err,conn) {
      if (err){
        return response.json({success:-1, message:err});
@@ -101,7 +100,6 @@ app.post('/getData', function(request, response){
 
 app.post('/getUniqueData', function(request, response){
   console.log('GET UNIQUE DATA API CALL:');
-  console.log(request);
    ibmdb.open(connStr, function (err,conn) {
      if (err){
        return response.json({success:-1, message:err});
@@ -116,7 +114,13 @@ app.post('/getUniqueData', function(request, response){
              return response.json({success:-3, message:err});
            }
            conn.close(function () {
-             console.log(data2);
+             console.log(data);
+             console.log(data2.length);
+             if (data2.length == 0){
+               data2[0] = {'ADDRESS1': '', 'ADDRESS2': '','CITY': '','STATE': '','COUNTRY': '','ZIPCODE': '','HOME_ID': data[0]['ID']};
+               console.log(data2);
+             }
+
              return response.json({success:1, message:'Data Received!', data:data,data2:data2 });
            });
          });
@@ -127,28 +131,58 @@ app.post('/getUniqueData', function(request, response){
 
 app.post('/updateDataEntry', function(request, response){
   console.log('UPDATE DATA API CALL:');
-  console.log(request);
   ibmdb.open(connStr, function (err,conn) {
     if (err){
       return response.json({success:-1, message:err});
     }
 
 
-    var str2 = "UPDATE DB2WML.HOME_ADDRESS SET ADDRESS1='"+request.body.addressInfo.address1+"',ADDRESS2='"+request.body.addressInfo.address2+"',CITY='"+request.body.addressInfo.city+"',STATE='"+request.body.addressInfo.state+"',COUNTRY='"+request.body.addressInfo.country+"' WHERE HOME_ID="+request.body.id+";";
+    var str2 = "UPDATE DB2WML.HOME_ADDRESS SET ADDRESS1='"+request.body.addressInfo.address1+"',ADDRESS2='"+request.body.addressInfo.address2+"',CITY='"+request.body.addressInfo.city+"',STATE='"+request.body.addressInfo.state+"',COUNTRY='"+request.body.addressInfo.country+"',ZIPCODE="+request.body.addressInfo.zipcode+" WHERE HOME_ID="+request.body.id+";";
+
+    var str4 = "INSERT INTO DB2WML.HOME_ADDRESS (ADDRESS1, ADDRESS2, CITY, STATE,ZIPCODE, COUNTRY,HOME_ID) VALUES ('"+request.body.addressInfo.address1+"', '"+request.body.addressInfo.address2+"', '"+request.body.addressInfo.city+"', '"+request.body.addressInfo.state+"', "+request.body.addressInfo.zipcode+", '"+request.body.addressInfo.country+"', "+request.body.id+");";
+
+
 
     var str = "UPDATE DB2WML.HOME_SALES SET LOTAREA="+request.body.data.lotArea+", YEARBUILT="+request.body.data.yearBuilt+", BLDGTYPE='"+request.body.data.bldgType+"',HOUSESTYLE='"+request.body.data.houseStyle+"',OVERALLCOND="+request.body.data.overallCond+",ROOFSTYLE='"+request.body.data.roofStyle+"',EXTERCOND='"+request.body.data.exterCond+"',FOUNDATION='"+request.body.data.foundation+"',BSMTCOND='"+request.body.data.bsmtCond+"',HEATING='"+request.body.data.heating+"',HEATINGQC='"+request.body.data.heatingQC+"',CENTRALAIR='"+request.body.data.centralAir+"',ELECTRICAL='"+request.body.data.electrical+"',FULLBATH="+request.body.data.fullBath+",HALFBATH="+request.body.data.halfBath+",BEDROOMABVGR="+request.body.data.bedroomAbvGr+",KITCHENABVGR="+request.body.data.kitchenAbvGr+",KITCHENQUAL='"+request.body.data.kitchenQual+"',TOTRMSABVGRD="+request.body.data.tempotRmsAbvGrd+",FIREPLACES="+request.body.data.fireplaces+",FIREPLACEQU='"+request.body.data.fireplaceQu+"',GARAGETYPE='"+request.body.data.garageType+"',GARAGEFINISH='"+request.body.data.garageFinish+"',GARAGECARS="+request.body.data.garageCars+",GARAGECOND='"+request.body.data.garageCond+"',POOLAREA="+request.body.data.poolArea+",POOLQC='"+request.body.data.poolQC+"',FENCE='"+request.body.data.fence+"',MOSOLD="+request.body.data.moSold+",YRSOLD="+request.body.data.yrSold+",SALEPRICE="+request.body.data.salePrice+" WHERE ID="+request.body.id+";";
+
+    var str3 = "SELECT * FROM DB2WML.HOME_ADDRESS WHERE HOME_ID="+request.body.id + ";";
 
     conn.query(str, function (err, data) {
       if (err){
         return response.json({success:-2, message:err});
       }
-      conn.query(str2, function (err, data) {
+      conn.query(str3, function (err, data2) {
+        console.log(data);
         if (err){
           return response.json({success:-3, message:err});
         }
-        conn.close(function () {
-          return response.json({success:1, message:'Data Edited!'});
-        });
+        else{
+          if (data2.length == 0 ){
+            conn.query(str4, function (err, data) {
+              if (err){
+                return response.json({success:-2, message:err});
+              }
+              else{
+                conn.close(function () {
+                  return response.json({success:1, message:'Data Edited!'});
+                });
+              }
+            });
+          }
+          else{
+            conn.query(str2, function (err, data) {
+              if (err){
+                return response.json({success:-2, message:err});
+              }
+              else{
+                conn.close(function () {
+                  return response.json({success:1, message:'Data Edited!'});
+                });
+              }
+            });
+          }
+        }
+
       });
     });
   });
@@ -227,14 +261,20 @@ app.get('/predict', function(request, response){
 
 app.post('/geocode', function(request, response){
     // Using callback
-  geocoder.geocode(request.body.address1 + ", " + request.body.city + ", " + request.body.state + ", " + request.body.zipcode, function(err, res) {
-    if (err){
-        return response.json({success:-2, message:err});
-    }
-    else{
-      return response.json({success:1, message:"WE DID IT", data:res} );
-    }
-  });
+  if (request.body.address1 == ''){
+    return response.json({success:1, message:"no address"});
+  }
+  else {
+    geocoder.geocode(request.body.address1 + ", " + request.body.city + ", " + request.body.state + ", " + request.body.zipcode, function(err, res) {
+      if (err){
+          return response.json({success:-2, message:err});
+      }
+      else{
+        return response.json({success:1, message:"WE DID IT", data:res} );
+      }
+    });
+  }
+
 })
 
 
