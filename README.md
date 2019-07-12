@@ -32,7 +32,7 @@ Once we have cloned our repository, the next thing we have to do is create our d
 Choose which type of database you would like and follow the corresponding instructions:
 
 1. [Create IBM Db2 Warehouse on Cloud](#2a-create-ibm-db2-warehouse-on-cloud)
-2. [Create an IBM Db2 Docker Image](#2b-create-an-ibm-db2-on-premise-datase)
+2. [Create an IBM Db2 Docker Image](#2b-create-an-ibm-db2-on-premise-database)
 
 #### 2a. Create IBM Db2 Warehouse on Cloud
 
@@ -93,7 +93,17 @@ In the Db2 warehouse resource page, click on `Manage` and go to DB2 console by c
 * Make sure the column names and data types displayed are correct, then click `Next`
 * Click `Begin Load` to load the data
 
-Once this is done it will create a table `HOME_SALES` under schema `DB2WML` which will be used by the Node.js application.
+We also need to create a table for `HOME_ADDRESS`, which will store the addresses of each house data. 
+
+* Click `Run SQL` from the hamburger menu.
+* Click `Blank`, which will open a blank sql editor
+* Run the command
+
+```bash
+CREATE TABLE DB2WML.HOME_ADDRESS (ADDRESS1 VARCHAR(50), ADDRESS2 VARCHAR(50), CITY VARCHAR(50), STATE VARCHAR(5), ZIPCODE INTEGER, COUNTRY VARCHAR(50), HOME_ID INTEGER)
+```
+
+Once this is done it will create a table `HOME_SALES` and `HOME_ADDRESS ` under schema `DB2WML` which will be used by the Node.js application.
 
 
 #### 3b. Create Schema and Tables for IBM Db2 Docker Image
