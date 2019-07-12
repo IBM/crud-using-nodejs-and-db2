@@ -31,7 +31,7 @@ Once we have cloned our repository, the next thing we have to do is create our d
  
 Choose which type of database you would like and follow the corresponding instructions:
 
-1. Create IBM Db2 Warehouse on Cloud
+1. [Create IBM Db2 Warehouse on Cloud](#2a-create-ibm-db2-warehouse-on-cloud)
 2. Create an IBM Db2 Docker Image (ON-Premise Database)
 
 #### 2a. Create IBM Db2 Warehouse on Cloud
