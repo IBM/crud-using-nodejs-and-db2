@@ -32,7 +32,7 @@ Once we have cloned our repository, the next thing we have to do is create our d
 Choose which type of database you would like and follow the corresponding instructions:
 
 1. [Create IBM Db2 Warehouse on Cloud](#2a-create-ibm-db2-warehouse-on-cloud)
-2. [Create an IBM Db2 Docker Image (ON-Premise Database)](#2b-create-on-ibm-db2-on-premise-datase)
+2. [Create an IBM Db2 Docker Image](#2b-create-an-ibm-db2-on-premise-datase)
 
 #### 2a. Create IBM Db2 Warehouse on Cloud
 
@@ -78,8 +78,8 @@ Now that we have created our databases, we need to import the data from the csv 
 
 Depending on which type you have (Cloud or On-Premise), the steps will be a little different. Please follow the corresponding steps:
 
-1. Create Schema and Tables for IBM Db2 Warehouse on Cloud
-2. Create Schema and Tables for IBM Db2 Docker Image
+1. [Create Schema and Tables for IBM Db2 Warehouse on Cloud](#3a-create-schema-and-tables-for-ibm-db2-warehouse-on-cloud)
+2. [Create Schema and Tables for IBM Db2 Docker Image](#3b-create-schema-and-tables-for-ibm-db2-docker-image)
 
 
 #### 3a Create Schema and Tables for IBM Db2 Warehouse on Cloud
