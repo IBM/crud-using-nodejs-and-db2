@@ -13,11 +13,11 @@ This is an application which uses Node.js to connect to IBM Db2 Warehouse on Clo
 
 ## Steps
 
-1. [Clone the repo](#1-clone-the-repo)
-1. [Create IBM Db2 Warehouse on Cloud](#2-create-ibm-db2-warehouse-on-cloud)
-1. [Create schema and tables](#3-create-schema-and-tables)
-1. [Add Db2 credentials to .env file](#4-add-db2-credentials-to-env-file)
-1. [Run the application](#5-run-the-application)
+1. [Clone The Repo](#1-clone-the-repo)
+2. [Create IBM Db2 (Db2 Warehouse on Cloud or Db2 Docker Image)](#2-create-ibm-db2-(db2-warehouse-on-cloud-or-db2-docker-image))
+3. [Create Schema and Tables](#3-create-schema-and-tables)
+4. [Add Db2 Credentials to .env File](#4-add-db2-credentials-to-env-file)
+5. [Run The Application](#5-run-the-application)
 
 ### 1. Clone the repo
 
@@ -25,26 +25,22 @@ This is an application which uses Node.js to connect to IBM Db2 Warehouse on Clo
 git clone https://github.com/IBM/crud-using-nodejs-and-db2.git
 ```
 
-### 2a. Create IBM Db2 Warehouse on Cloud
+### 2. Create IBM Db2 (Db2 Warehouse on Cloud or Db2 Docker Image)
+
+Once we have cloned our repository, the next thing we have to do is create our database that will hold our house sales data. There are two ways we can create our database. One way is creating IBM Db2 Warehouse on Cloud. This database will be hosted on the cloud. However, if you perfer to have your database on premise or locally, we can all use the Db2 Docker Image. 
+ 
+Choose which type of database you would like and follow the corresponding instructions:
+
+1. Create IBM Db2 Warehouse on Cloud
+2. Create an IBM Db2 Docker Image (ON-Premise Database)
+
+#### 2a. Create IBM Db2 Warehouse on Cloud
 
 Create the Db2 Warehouse on Cloud service and make sure to note the credentials using the following link:
 
 * [**IBM Db2 Warehouse on Cloud**](https://cloud.ibm.com/catalog/services/db2-warehouse)
 
-### 2b. Create Schema and Tables for IBM Db2 Warehouse on Cloud
-
-In the Db2 warehouse resource page, click on `Manage` and go to DB2 console by clicking the button `Open Console`. In the console do the following to load your data.
-
-* Click `Load` from the hamburger menu.
-* Click `Browse files` or you can drag files, select the [data/home-sales-training-data.csv](data/home-sales-training-data.csv) and click `Next`
-* Choose existing schema or create a new one named `DB2WML` by clicking `+ New Schema`
-* Create a new table named `HOME_SALES` by clicking `+ New Table` on the schema you created and click `Next`
-* Make sure the column names and data types displayed are correct, then click `Next`
-* Click `Begin Load` to load the data
-
-Once this is done it will create a table `HOME_SALES` under schema `DB2WML` which will be used by the Node.js application.
-
-### 3a. Create an IBM Db2 ON-Premise Database
+#### 2b. Create an IBM Db2 ON-Premise Database
 
 Instead of creating the Db2 Warehouse on Cloud service, we can also have our database instantiated locally by using the free IBM Db2 Docker Image.
 
@@ -63,7 +59,7 @@ Steps to get your db2 running locally:
 ```bash
 docker pull ibmcom/db2
 
-docker run -itd --name mydb2 --privileged=true -p 50000:50000 -e LICENSE=accept -e DB2INST1_PASSWORD=hackathon -e DBNAME=testdb -v db2:/database ibmcom/db2
+docker run -itd --name mydb2 --privileged=true -p 50000:50000 -e LICENSE=accept -e DB2INST1_PASSWORD=hackathon -e DBNAME= homesalesdb -v db2:/database ibmcom/db2
 
 docker exec -ti mydb2 bash -c "su - db2inst1"
 ```
@@ -72,11 +68,35 @@ Once this is done, it will create a db2 docker container with the follow customi
 
 * IP Address/Domain: `localhost`
 * Port: `50000`
-* Database name: `testdb`
+* Database name: `homesalesdb`
 * Username: `db2inst1`
 * Password: `hackathon`
 
-### 3b. Create Schema and Tables for IBM Db2 Docker Image
+
+### 3. Create Schema and Tables
+Now that we have created our databases, we need to import the data from the csv file into our database. We will be creating a schema called `DB2WML`. The two tables we will create are `HOME_SALES` and `HOME_ADDRESS`. `HOME_SALES` will store the data we retrieve from our csv file. `HOME_ADDRESS` is going to be the addresses associated with each home. 
+
+Depending on which type you have (Cloud or On-Premise), the steps will be a little different. Please follow the corresponding steps:
+
+1. Create Schema and Tables for IBM Db2 Warehouse on Cloud
+2. Create Schema and Tables for IBM Db2 Docker Image
+
+
+#### 3a Create Schema and Tables for IBM Db2 Warehouse on Cloud
+
+In the Db2 warehouse resource page, click on `Manage` and go to DB2 console by clicking the button `Open Console`. In the console do the following to load your data.
+
+* Click `Load` from the hamburger menu.
+* Click `Browse files` or you can drag files, select the [data/home-sales-training-data.csv](data/home-sales-training-data.csv) and click `Next`
+* Choose existing schema or create a new one named `DB2WML` by clicking `+ New Schema`
+* Create a new table named `HOME_SALES` by clicking `+ New Table` on the schema you created and click `Next`
+* Make sure the column names and data types displayed are correct, then click `Next`
+* Click `Begin Load` to load the data
+
+Once this is done it will create a table `HOME_SALES` under schema `DB2WML` which will be used by the Node.js application.
+
+
+#### 3b. Create Schema and Tables for IBM Db2 Docker Image
 
 Exit out of the container shell by CONTROL-C. Load the sample data into the onprem Db2 database:
 
@@ -93,10 +113,10 @@ docker exec -ti mydb2 bash -c "su - db2inst1"
 Steps To Create Schema and Tables:
 
 
-* Connect to the database `testdb` NOTE: This command may not work for sometime, since the container takes some time to create the database. If this command doesn work, please wait a couple minutes and then try again.
+* Connect to the database `homesalesdb` NOTE: This command may not work for sometime, since the container takes some time to create the database. If this command doesn work, please wait a couple minutes and then try again.
 
 ```bash
-db2 connect to testdb
+db2 connect to homesalesdb
 ```
 
 * Create Schema `DB2WML`
@@ -118,15 +138,6 @@ db2 'CREATE TABLE DB2WML.HOME_ADDRESS (ADDRESS1 VARCHAR(50), ADDRESS2 VARCHAR(50
 ```bash
 db2 'IMPORT FROM ../../../home-sales-training-data.csv OF DEL SKIPCOUNT 1 INSERT INTO DB2WML.HOME_SALES'
 ```
-
-
-
-
-
-
-
-
-
 
 ### 4. Add Db2 credentials to .env file
 
