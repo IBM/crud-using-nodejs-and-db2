@@ -27,7 +27,7 @@ git clone https://github.com/IBM/crud-using-nodejs-and-db2.git
 
 ### 2. Create an IBM Db2 Instance
 
-Once we have cloned our repository, the next thing we have to do is create our database that will hold our house sales data. There are two ways we can create our database. One way is creating IBM Db2 Warehouse on Cloud. This database will be hosted on the cloud. However, if you perfer to have your database on premise or locally, we can also use the Db2 Docker Image. 
+Once we have cloned our repository, the next thing we have to do is create our database that will hold our house sales data. There are two ways we can create our database. One way is creating IBM Db2 Warehouse on Cloud. This database will be hosted on the cloud. However, if you prefer to have your database on premise or locally, we can also use the Db2 Docker Image. 
  
 Choose which type of database you would like and follow the corresponding instructions:
 
@@ -123,7 +123,7 @@ docker exec -ti mydb2 bash -c "su - db2inst1"
 Steps To Create Schema and Tables:
 
 
-* Connect to the database `homesalesdb` NOTE: This command may not work for sometime, since the container takes some time to create the database. If this command doesn work, please wait a couple minutes and then try again.
+* Connect to the database `homesalesdb` NOTE: This command may not work for sometime, since the container takes some time to create the database. If this command doesn work, please wait a couple of minutes and then try again.
 
 ```bash
 db2 connect to homesalesdb
