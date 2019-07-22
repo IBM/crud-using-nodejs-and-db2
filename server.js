@@ -37,9 +37,7 @@ let connStr = "DATABASE="+process.env.DB_DATABASE+";HOSTNAME="+process.env.DB_HO
 //let connStr = "DATABASE=BLUDB;HOSTNAME=db2whoc-flex-zipnqsp.services.au-syd.bluemix.net;PORT=50000;PROTOCOL=TCPIP;UID=bluadmin;PWD=zWG@U4q1uFpDTi0v8jVBDI7_PtSr0;";
 
  app.post('/newDataEntry', function(request, response){
-   console.log('NEW DATA API CALL:');   
    var house = JSON.parse(request.body['house']);
-    console.log(house['lotArea']);
 
     ibmdb.open(connStr, function (err,conn) {
       if (err){
@@ -79,8 +77,7 @@ let connStr = "DATABASE="+process.env.DB_DATABASE+";HOSTNAME="+process.env.DB_HO
 
 })
 
-app.post('/getData', function(request, response){
-  console.log('GET DATA API CALL:');
+app.post('/getData', function(request, response){  
    ibmdb.open(connStr, function (err,conn) {
      if (err){
        return response.json({success:-1, message:err});
@@ -96,8 +93,7 @@ app.post('/getData', function(request, response){
    });
 })
 
-app.post('/getUniqueData', function(request, response){
-  console.log('GET UNIQUE DATA API CALL:');
+app.post('/getUniqueData', function(request, response){  
    ibmdb.open(connStr, function (err,conn) {
      if (err){
        return response.json({success:-1, message:err});
@@ -127,19 +123,15 @@ app.post('/getUniqueData', function(request, response){
    });
 })
 
-app.post('/updateDataEntry', function(request, response){
-  console.log('UPDATE DATA API CALL:');
+app.post('/updateDataEntry', function(request, response){  
   ibmdb.open(connStr, function (err,conn) {
     if (err){
       return response.json({success:-1, message:err});
     }
 
-
     var str2 = "UPDATE "+process.env.DB_SCHEMA+".HOME_ADDRESS SET ADDRESS1='"+request.body.addressInfo.address1+"',ADDRESS2='"+request.body.addressInfo.address2+"',CITY='"+request.body.addressInfo.city+"',STATE='"+request.body.addressInfo.state+"',COUNTRY='"+request.body.addressInfo.country+"',ZIPCODE="+request.body.addressInfo.zipcode+" WHERE HOME_ID="+request.body.id+";";
 
     var str4 = "INSERT INTO "+process.env.DB_SCHEMA+".HOME_ADDRESS (ADDRESS1, ADDRESS2, CITY, STATE,ZIPCODE, COUNTRY,HOME_ID) VALUES ('"+request.body.addressInfo.address1+"', '"+request.body.addressInfo.address2+"', '"+request.body.addressInfo.city+"', '"+request.body.addressInfo.state+"', "+request.body.addressInfo.zipcode+", '"+request.body.addressInfo.country+"', "+request.body.id+");";
-
-
 
     var str = "UPDATE "+process.env.DB_SCHEMA+".HOME_SALES SET LOTAREA="+request.body.data.lotArea+", YEARBUILT="+request.body.data.yearBuilt+", BLDGTYPE='"+request.body.data.bldgType+"',HOUSESTYLE='"+request.body.data.houseStyle+"',OVERALLCOND="+request.body.data.overallCond+",ROOFSTYLE='"+request.body.data.roofStyle+"',EXTERCOND='"+request.body.data.exterCond+"',FOUNDATION='"+request.body.data.foundation+"',BSMTCOND='"+request.body.data.bsmtCond+"',HEATING='"+request.body.data.heating+"',HEATINGQC='"+request.body.data.heatingQC+"',CENTRALAIR='"+request.body.data.centralAir+"',ELECTRICAL='"+request.body.data.electrical+"',FULLBATH="+request.body.data.fullBath+",HALFBATH="+request.body.data.halfBath+",BEDROOMABVGR="+request.body.data.bedroomAbvGr+",KITCHENABVGR="+request.body.data.kitchenAbvGr+",KITCHENQUAL='"+request.body.data.kitchenQual+"',TOTRMSABVGRD="+request.body.data.tempotRmsAbvGrd+",FIREPLACES="+request.body.data.fireplaces+",FIREPLACEQU='"+request.body.data.fireplaceQu+"',GARAGETYPE='"+request.body.data.garageType+"',GARAGEFINISH='"+request.body.data.garageFinish+"',GARAGECARS="+request.body.data.garageCars+",GARAGECOND='"+request.body.data.garageCond+"',POOLAREA="+request.body.data.poolArea+",POOLQC='"+request.body.data.poolQC+"',FENCE='"+request.body.data.fence+"',MOSOLD="+request.body.data.moSold+",YRSOLD="+request.body.data.yrSold+",SALEPRICE="+request.body.data.salePrice+" WHERE ID="+request.body.id+";";
 
@@ -187,9 +179,7 @@ app.post('/updateDataEntry', function(request, response){
 })
 
 
-app.post('/deleteData', function(request, response){
-  console.log('DELETE DATA API CALL:');
-  console.log(request);
+app.post('/deleteData', function(request, response){  
    ibmdb.open(connStr, function (err,conn) {
      if (err){
        return response.json({success:-1, message:err});
@@ -213,8 +203,7 @@ app.post('/deleteData', function(request, response){
    });
 })
 
-app.get('/predict', function(request, response){
-  console.log('PREDICT API CALL:');
+app.get('/predict', function(request, response){  
   console.log(request);
    return response.json({
         "address1":"10892 Northfield Sq",
@@ -268,15 +257,12 @@ app.post('/geocode', function(request, response){
           return response.json({success:-2, message:err});
       }
       else{
-        return response.json({success:1, message:"WE DID IT", data:res} );
+        return response.json({success:1, message:"Map Loaded", data:res} );
       }
     });
   }
 
 })
-
-
-
 
 
 app.listen(8888, function(){
