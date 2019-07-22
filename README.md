@@ -11,6 +11,10 @@ This is an application which uses Node.js to connect to IBM Db2 Warehouse on Clo
 3. Node.js app exposes API to interact with IBM Db2 Warehouse on Cloud.
 4. An Angular frontend application to collect home sales data and call API to store that data to IBM Db2 Warehouse on Cloud.
 
+## Video
+
+[![CRUD application using Node.js and IBM Db2](https://img.youtube.com/vi/bdQtPS4OStw/0.jpg)](https://youtu.be/bdQtPS4OStw)
+
 ## Steps
 
 1. [Clone The Repo](#1-clone-the-repo)
@@ -27,7 +31,7 @@ git clone https://github.com/IBM/crud-using-nodejs-and-db2.git
 
 ### 2. Create an IBM Db2 Instance
 
-Once we have cloned our repository, the next thing we have to do is create our database that will hold our house sales data. There are two ways we can create our database. One way is creating IBM Db2 Warehouse on Cloud. This database will be hosted on the cloud. However, if you prefer to have your database on premise or locally, we can also use the Db2 Docker Image. 
+Once we have cloned our repository, the next thing we have to do is create our database that will hold our house sales data. There are two ways we can create our database. One way is creating IBM Db2 Warehouse on Cloud. This database will be hosted on the cloud. However, if you prefer to have your database on premise or locally, we can also use the Db2 Docker Image.
  
 Choose which type of database you would like and follow the corresponding instructions:
 
