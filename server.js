@@ -37,10 +37,8 @@ let connStr = "DATABASE="+process.env.DB_DATABASE+";HOSTNAME="+process.env.DB_HO
 //let connStr = "DATABASE=BLUDB;HOSTNAME=db2whoc-flex-zipnqsp.services.au-syd.bluemix.net;PORT=50000;PROTOCOL=TCPIP;UID=bluadmin;PWD=zWG@U4q1uFpDTi0v8jVBDI7_PtSr0;";
 
  app.post('/newDataEntry', function(request, response){
-   console.log('NEW DATA API CALL:');
-   console.log(request);
+   console.log('NEW DATA API CALL:');   
    var house = JSON.parse(request.body['house']);
-
     console.log(house['lotArea']);
 
     ibmdb.open(connStr, function (err,conn) {
