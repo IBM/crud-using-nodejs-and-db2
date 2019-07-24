@@ -5,8 +5,7 @@ import {Router} from '@angular/router';
 import { HttpService }  from '../http.service';
 import { PredictHouseInfo } from '../models/predict-house-info';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { MapsAPILoader } from '@agm/core';
-import { HereService } from "../here.service";
+import {  MapsAPILoader }  from '@agm/core';
 import { faImage, faClock, faBed, faCar, faBuilding, faDoorOpen, faFire, faHome, faSwimmer, faBath } from '@fortawesome/free-solid-svg-icons';
 library.add(faImage, faClock, faDoorOpen, faFire,faHome, faBuilding, faCar, faBed, faSwimmer,faBath);
 
@@ -19,8 +18,8 @@ library.add(faImage, faClock, faDoorOpen, faFire,faHome, faBuilding, faCar, faBe
   styleUrls: ['./predict-output.component.css']
 })
 export class PredictOutputComponent implements OnInit {
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat = 51.678418;
+  lng = 7.809007;
   lotArea:string;
   yearBuilt:string;
   bed:string;
@@ -39,13 +38,13 @@ export class PredictOutputComponent implements OnInit {
     this.showData = false;
     this.showMessage = true;
     this.lotArea='';
-    this.yearBuilt='';
-    this.bed='';
-    this.rooms='';
-    this.condition='';
-    this.fireplace='';
-    this.garage='';
-    this.bath='';
+    this.yearBuilt = '';
+    this.bed = '';
+    this.rooms = '';
+    this.condition = '';
+    this.fireplace = '';
+    this.garage = '';
+    this.bath = '';
     this.model = [];
     this.salePrice = '';
     this.averageSalePrice = '';
@@ -61,9 +60,9 @@ export class PredictOutputComponent implements OnInit {
 
   getGeoCode(){
     var geo = this._httpService.getCoordinates(this.model['address1'], this.model['city'],this.model['state'],this.model['zipcode']);
-    geo.subscribe(data=>{
+    geo.subscribe(data => {
       console.log(data);
-      if(data['success'] != 1){
+      if (data['success'] != 1){
         console.log(data['message']);
       }
       this.lat = data['data'][0]['latitude'];

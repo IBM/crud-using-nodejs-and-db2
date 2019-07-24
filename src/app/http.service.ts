@@ -1,7 +1,7 @@
-//@author Rohith Ravindranath
-//@version July 10 2019
 import { Injectable } from '@angular/core';
-import {HttpClient,HttpHeaders} from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PredictHouseInfo } from './models/predict-house-info';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,52 +9,53 @@ import {HttpClient,HttpHeaders} from '@angular/common/http'
 
 export class HttpService {
 
-  GO_HOST_NAME = 'http://localhost:8080/'
-  NODE_HOST_NAME = 'http://localhost:8888/'
-
-  constructor(private _http: HttpClient) {
+  constructor(private http: HttpClient) {
 
   }
 
   httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json;charset=UTF-8',
-                'Accept': 'application/json',
-            })
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json;charset=UTF-8',
+      Accept: 'application/json',
+    })
   };
 
-  createNewDataEntry(houseInfo,addressInfo){
+  createNewDataEntry(houseInfo, addressInfo) {
     const payload = JSON.stringify(houseInfo);
     const payload2 = JSON.stringify(addressInfo);
-    return this._http.post(this.NODE_HOST_NAME + 'newDataEntry', {house:payload,address:payload2}, this.httpOptions);
+    return this.http.post(environment.NODE_HOST + 'newDataEntry', { house: payload, address: payload2 }, this.httpOptions);
   }
 
-  getDataFromDatabase(number){
-    return this._http.post(this.NODE_HOST_NAME + 'getData', {num:number},this.httpOptions);
+  getDataFromDatabase(id) {
+    return this.http.post(environment.NODE_HOST + 'getData', { num: id }, this.httpOptions);
   }
 
-  getUniqueDataFromDatabase(id){
-    return this._http.post(this.NODE_HOST_NAME + 'getUniqueData', {id:id}, this.httpOptions);
+  getUniqueDataFromDatabase(id) {
+    return this.http.post(environment.NODE_HOST + 'getUniqueData', { id: id }, this.httpOptions);
   }
 
-  deleteDataFromDatabase(id){
-    return this._http.post(this.NODE_HOST_NAME + 'deleteData',{id:id} ,this.httpOptions);
+  deleteDataFromDatabase(id) {
+    return this.http.post(environment.NODE_HOST + 'deleteData', { id: id }, this.httpOptions);
   }
 
-  updateDataEntry(id,houseInfo,addressInfo){
+  updateDataEntry(id, houseInfo, addressInfo) {
     const payload = JSON.stringify(houseInfo);
-    console.log(payload);
-    return this._http.post(this.NODE_HOST_NAME + 'updateDataEntry',{id:id,data:houseInfo,addressInfo:addressInfo} ,this.httpOptions);
+    return this.http.post(environment.NODE_HOST + 'updateDataEntry', { id: id, data: houseInfo, addressInfo: addressInfo }, this.httpOptions);
   }
 
-  predict(houseInfo){
+  predict(predictOption: string, houseInfo: PredictHouseInfo) {
     const payload = JSON.stringify(houseInfo);
-    console.log(payload);
-    return this._http.get(this.NODE_HOST_NAME + 'predict');
+    let api = '';
+    if (predictOption.toLowerCase() === 'db2') {
+        api = environment.GO_DB2_API;
+    } else {
+        api = environment.IBM_WML_API;
+    }    
+    return this.http.post(api, payload, this.httpOptions);
   }
 
-  getCoordinates(address1, city, state, zipcode){
-    return this._http.post(this.NODE_HOST_NAME + 'geocode',{address1:address1,city:city, state:state, zipcode:zipcode},this.httpOptions);
+  getCoordinates(address1, city, state, zipcode) {
+    return this.http.post(environment.NODE_HOST + 'geocode', { address1: address1, city: city, state: state, zipcode: zipcode }, this.httpOptions);
   }
 
 }

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpService } from './http.service'
-import { HereService } from './here.service'
+import { HttpService } from './http.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -39,7 +38,7 @@ import { ViewEntryComponent } from './view-entry/view-entry.component';
       apiKey: 'AIzaSyAM0KXiz3xTv9KAvnOIdm5J0Agnwp3_lOI'
     })
   ],
-   providers: [HttpService,HereService],
+   providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

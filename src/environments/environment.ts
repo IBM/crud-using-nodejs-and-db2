@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  GO_DB2_API: 'http://localhost:8080/predict',
+  IBM_WML_API: 'https://<url>',
+  NODE_HOST: 'http://localhost:8888'
 };
 
 /*

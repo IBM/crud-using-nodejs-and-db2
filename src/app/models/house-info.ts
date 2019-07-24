@@ -1,8 +1,6 @@
-//@author Rohith Ravindranath
-//@version July 10 2019
 export class HouseInfo {
   constructor(
-    public lotArea:string,
+    public lotArea: string,
     public bldgType:string,
     public houseStyle:string,
     public overallCond:string,
