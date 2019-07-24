@@ -14,8 +14,9 @@ import { AddressInfo } from '../models/address-info';
 export class LoadDataComponent implements OnInit {
 
   model: HouseInfo;
-    addressModel:AddressInfo;
+  addressModel:AddressInfo;
 
+  errPredictOption: boolean;
   errLotArea:boolean;
   errBldgType:boolean;
   errHouseStyle:boolean;
@@ -70,7 +71,7 @@ export class LoadDataComponent implements OnInit {
     this.model = new HouseInfo('', 'Select BldgType', 'Select HouseStyle', '', '', '', '', '', '', 'Select KitchenQual', '', 'Select Heating', 'Select HeatingQC', 'Select CentralAir', 'Select Electrical', 'Select RoofStyle', 'Select ExterCond', 'Select Foundation', 'Select BsmtCond', '', 'Select PoolQC', '', 'Select FireplaceQu', 'Select GarageType', 'Select GarageFinish', '', 'Select GarageCond', 'Select Fence', '', '', '');
 
     this.addressModel = new AddressInfo('', ' ', '', '', '', '');
-
+    
     this.errAddress1 = false;
     this.errAddress2= false;
     this.errCity= false;
@@ -157,7 +158,7 @@ export class LoadDataComponent implements OnInit {
   validateInputs(){
     this.validate_inputs = true;
     if(this.model.bldgType.search('Select') != -1){ this.errBldgType= true; this.validate_inputs=false; }
-    else{ this.errBldgType= false; }
+    else{ this.errBldgType= false; }    
     if(this.model.houseStyle.search('Select') != -1){ this.errHouseStyle= true; this.validate_inputs=false; }
     else{ this.errHouseStyle= false; }
     if(this.model.kitchenQual.search('Select') != -1){ this.errKitchenQual= true; this.validate_inputs=false; }
