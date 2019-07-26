@@ -15,7 +15,6 @@ export class LoadDataComponent implements OnInit {
 
   model: HouseInfo;
   addressModel:AddressInfo;
-
   errPredictOption: boolean;
   errLotArea:boolean;
   errBldgType:boolean;
@@ -50,35 +49,28 @@ export class LoadDataComponent implements OnInit {
   errSalePrice:boolean;
   errErrorMessage:boolean;
   errMessage:string;
-
   errAddress1:boolean;
   errAddress2:boolean;
   errCity:boolean;
   errState:boolean;
   errZipCode:boolean;
   errCountry:boolean;
-
   greenErrorMessage:boolean;
   greenMessage:string;
-
   validate_inputs:boolean;
 
 
   constructor(private _router:Router, private _httpService:HttpService) {
 
     this.validate_inputs = true;
-
     this.model = new HouseInfo('', 'Select BldgType', 'Select HouseStyle', '', '', '', '', '', '', 'Select KitchenQual', '', 'Select Heating', 'Select HeatingQC', 'Select CentralAir', 'Select Electrical', 'Select RoofStyle', 'Select ExterCond', 'Select Foundation', 'Select BsmtCond', '', 'Select PoolQC', '', 'Select FireplaceQu', 'Select GarageType', 'Select GarageFinish', '', 'Select GarageCond', 'Select Fence', '', '', '');
-
     this.addressModel = new AddressInfo('', ' ', '', '', '', '');
-
     this.errAddress1 = false;
     this.errAddress2= false;
     this.errCity= false;
     this.errState= false;
     this.errZipCode= false;
     this.errCountry= false;
-
     this.errLotArea = false;
     this.errBldgType= false;
     this.errHouseStyle= false;
@@ -112,7 +104,6 @@ export class LoadDataComponent implements OnInit {
     this.errSalePrice= false;
     this.errErrorMessage = false;
     this.errMessage = '';
-
     this.greenErrorMessage= false;
     this.greenMessage = '';
 
@@ -122,7 +113,6 @@ export class LoadDataComponent implements OnInit {
     if (localStorage.getItem("dataEntered") == "true"){
       this.greenErrorMessage= true;
       this.greenMessage = 'Data Successfully Entered!';
-
     }
     localStorage.setItem("dataEntered","false");
 
@@ -190,31 +180,21 @@ export class LoadDataComponent implements OnInit {
     if(this.model.fence.search('Select') != -1){ this.errFence= true; this.validate_inputs=false; }
     else{ this.errFence= false; }
 
-
-
-
-
     if (this.model.lotArea == ''){  this.errLotArea = true; this.validate_inputs=false; }
     else{  if (Number.isNaN(Number(this.model.lotArea))){ this.errLotArea = true;  this.validate_inputs = false;}
       else{ this.errLotArea = false; }}
-
     if (this.model.overallCond == ''){  this.errOverallCond = true;  this.validate_inputs=false;}
     else{   if (Number.isNaN(Number(this.model.overallCond))){ this.errOverallCond = true;this.validate_inputs = false; }
       else{ this.errOverallCond = false; }}
-
-
     if (this.model.yearBuilt == ''){  this.errYearBuilt = true;  this.validate_inputs=false;}
     else{   if (Number.isNaN(Number(this.model.yearBuilt))){ this.errYearBuilt = true; this.validate_inputs = false;}
       else{ this.errYearBuilt = false; }}
-
     if (this.model.fullBath == '') {  this.errFullBath = true; this.validate_inputs=false; }
     else{  if (Number.isNaN(Number(this.model.fullBath))){ this.errFullBath = true; this.validate_inputs = false;}
       else{ this.errFullBath = false; }}
-
     if (this.model.halfBath == ''){  this.errHalfBath = true; this.validate_inputs=false; }
     else{   if (Number.isNaN(Number(this.model.halfBath))){ this.errHalfBath = true;this.validate_inputs = false; }
       else{ this.errHalfBath = false; }}
-
     if (this.model.bedroomAbvGr == ''){  this.errBedroomAbvGr = true; this.validate_inputs=false; }
     else{ if (Number.isNaN(Number(this.model.bedroomAbvGr))){ this.errBedroomAbvGr = true; this.validate_inputs = false;}
     else{ this.errBedroomAbvGr = false; }}
@@ -242,10 +222,8 @@ export class LoadDataComponent implements OnInit {
     if (this.model.salePrice == ''){  this.errSalePrice = true; this.validate_inputs=false; }
     else{  if (Number.isNaN(Number(this.model.salePrice))){ this.errSalePrice = true; this.validate_inputs = false;}
      else{ this.errSalePrice = false; }}
-
     if (this.addressModel.address1 == ''){  this.errAddress1 = true; this.validate_inputs=false; }
     else{ this.errAddress1 = false;}
-
     if (this.addressModel.city == ''){  this.errCity = true; this.validate_inputs=false; }
     else{ this.errCity = false;}
     if (this.addressModel.state== ''){  this.errState = true; this.validate_inputs=false; }

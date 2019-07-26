@@ -10,18 +10,11 @@ import { HttpService }  from '../http.service';
   styleUrls: ['./view-data.component.css']
 })
 export class ViewDataComponent implements OnInit {
-
   data:any;
-
   showData:boolean;
-
-
   showUpdateDataMessage:boolean;
-
   showMessage:boolean;
-
   showDataDeletedMessage:boolean;
-
   numOfData:string;
 
   constructor(private _httpService:HttpService, private _router: Router) {
@@ -36,7 +29,6 @@ export class ViewDataComponent implements OnInit {
 
   ngOnInit() {
     this.aquireData();
-
     if (localStorage.getItem("dataDeleted") == "true"){
       this.showDataDeletedMessage = true;
     }
@@ -58,7 +50,6 @@ export class ViewDataComponent implements OnInit {
           this.showUpdateDataMessage = true;
           localStorage.setItem("dataUpdated","false");
         }
-
         this.showData = true;
         this.showMessage  = false;
       }

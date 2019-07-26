@@ -61,7 +61,6 @@ export class PredictOutputComponent implements OnInit {
   getGeoCode(){
     var geo = this._httpService.getCoordinates(this.model['address1'], this.model['city'],this.model['state'],this.model['zipcode']);
     geo.subscribe(data => {
-
       if (data['success'] != 1){
         console.log(data['message']);
       }

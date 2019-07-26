@@ -14,7 +14,6 @@ export class PredictDataComponent implements OnInit {
   model: PredictHouseInfo;
   addressModel: AddressInfo;
   predictOption: string;
-
   errPredictOption = false;
   errLotArea: boolean;
   errBldgType: boolean;
@@ -49,29 +48,23 @@ export class PredictDataComponent implements OnInit {
   errSalePrice: boolean;
   errErrorMessage: boolean;
   errMessage: string;
-
   errAddress1: boolean;
   errAddress2: boolean;
   errCity: boolean;
   errState: boolean;
   errZipCode: boolean;
   errCountry: boolean;
-
   greenErrorMessage: boolean;
   greenMessage: string;
-
   validateInputFields: boolean;
 
 
   constructor(private router: Router, private httpService: HttpService) {
 
     this.validateInputFields = true;
-
     this.model = new PredictHouseInfo('', 'Select BldgType', 'Select HouseStyle', '', '', '', '', '', '', 'Select KitchenQual', '', 'Select Heating', 'Select HeatingQC', 'Select CentralAir', 'Select Electrical', 'Select RoofStyle', 'Select ExterCond', 'Select Foundation', 'Select BsmtCond', '', 'Select PoolQC', '', 'Select FireplaceQu', 'Select GarageType', 'Select GarageFinish', '', 'Select GarageCond', 'Select Fence', '', '');
-
     this.addressModel = new AddressInfo('', ' ', '', '', '', '');
     this.predictOption = '';
-
     this.errPredictOption = false;
     this.errAddress1 = false;
     this.errAddress2 = false;
@@ -79,7 +72,6 @@ export class PredictDataComponent implements OnInit {
     this.errState = false;
     this.errZipCode = false;
     this.errCountry = false;
-
     this.errLotArea = false;
     this.errBldgType = false;
     this.errHouseStyle = false;
@@ -113,7 +105,6 @@ export class PredictDataComponent implements OnInit {
     this.errSalePrice = false;
     this.errErrorMessage = false;
     this.errMessage = '';
-
     this.greenErrorMessage = false;
     this.greenMessage = '';
 
@@ -123,7 +114,6 @@ export class PredictDataComponent implements OnInit {
     if (localStorage.getItem('dataEntered') == 'true'){
       this.greenErrorMessage = true;
       this.greenMessage = 'Data Successfully Entered!';
-
     }
     localStorage.setItem('dataEntered', 'false');
 
@@ -145,10 +135,8 @@ export class PredictDataComponent implements OnInit {
 
   validateInputs(){
     this.validateInputFields = true;
-
     if (this.predictOption == ''){  this.errPredictOption = true; this.validateInputFields = false; }
     else { this.errPredictOption = false; }
-
     if (this.model.bldgType.search('Select') != -1){ this.errBldgType = true; this.validateInputFields = false; }
     else{ this.errBldgType = false; }
     if (this.model.houseStyle.search('Select') != -1){ this.errHouseStyle = true; this.validateInputFields = false; }
@@ -186,24 +174,18 @@ export class PredictDataComponent implements OnInit {
     if (this.model.lotArea == ''){  this.errLotArea = true; this.validateInputFields = false; }
     else{  if (Number.isNaN(Number(this.model.lotArea))){ this.errLotArea = true;  this.validateInputFields = false; }
       else{ this.errLotArea = false; }}
-
     if (this.model.overallCond == ''){  this.errOverallCond = true;  this.validateInputFields = false; }
     else{   if (Number.isNaN(Number(this.model.overallCond))){ this.errOverallCond = true; this.validateInputFields = false; }
       else{ this.errOverallCond = false; }}
-
-
     if (this.model.yearBuilt == ''){  this.errYearBuilt = true;  this.validateInputFields = false; }
     else{   if (Number.isNaN(Number(this.model.yearBuilt))){ this.errYearBuilt = true; this.validateInputFields = false; }
       else{ this.errYearBuilt = false; }}
-
     if (this.model.fullBath == '') {  this.errFullBath = true; this.validateInputFields = false; }
     else{  if (Number.isNaN(Number(this.model.fullBath))){ this.errFullBath = true; this.validateInputFields = false; }
       else{ this.errFullBath = false; }}
-
     if (this.model.halfBath == ''){  this.errHalfBath = true; this.validateInputFields = false; }
     else{   if (Number.isNaN(Number(this.model.halfBath))){ this.errHalfBath = true; this.validateInputFields = false; }
       else{ this.errHalfBath = false; }}
-
     if (this.model.bedroomAbvGr == ''){  this.errBedroomAbvGr = true; this.validateInputFields = false; }
     else{ if (Number.isNaN(Number(this.model.bedroomAbvGr))){ this.errBedroomAbvGr = true; this.validateInputFields = false; }
     else{ this.errBedroomAbvGr = false; }}
@@ -214,9 +196,7 @@ export class PredictDataComponent implements OnInit {
     if (this.model.garageCars == ''){  this.errGarageCars = true; this.validateInputFields = false; } else { if (Number.isNaN(Number(this.model.garageCars))){ this.errGarageCars = true; this.validateInputFields = false; } else { this.errGarageCars = false; }}
     if (this.model.moSold == ''){  this.errMoSold = true;  this.validateInputFields = false; } else { if (Number.isNaN(Number(this.model.moSold))){ this.errMoSold = true; this.validateInputFields = false; } else { this.errMoSold = false; }}
     if (this.model.yrSold == ''){  this.errYrSold = true; this.validateInputFields = false; } else {  if (Number.isNaN(Number(this.model.yrSold))){ this.errYrSold = true; this.validateInputFields = false; } else { this.errYrSold = false; }}
-
     if (this.addressModel.address1 == ''){  this.errAddress1 = true; this.validateInputFields = false; } else { this.errAddress1 = false; }
-
     if (this.addressModel.city == ''){  this.errCity = true; this.validateInputFields = false; } else { this.errCity = false; }
     if (this.addressModel.state == ''){  this.errState = true; this.validateInputFields = false; } else { this.errState = false; }
     if (this.addressModel.zipcode == ''){  this.errZipCode = true; this.validateInputFields = false; } else {  if (Number.isNaN(Number(this.addressModel.zipcode))){ this.errZipCode = true; this.validateInputFields = false; } else { this.errZipCode = false; }}
