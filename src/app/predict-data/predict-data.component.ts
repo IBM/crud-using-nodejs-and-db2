@@ -139,8 +139,6 @@ export class PredictDataComponent implements OnInit {
       this.errErrorMessage = false;
       this.httpService.predict(this.predictOption, this.model).subscribe(
         (predictions) => {
-          console.log('Predictions Result');
-          console.log(predictions);
         });
     }
   }

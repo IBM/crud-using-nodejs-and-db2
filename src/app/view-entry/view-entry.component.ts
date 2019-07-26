@@ -57,11 +57,11 @@ export class ViewEntryComponent implements OnInit {
       if(data['success'] != 1){
         console.log(data['message']);
       } else {
-        this.data = data['data'][0];        
+        this.data = data['data'][0];
         this.data2 = data['data2'][0];
 
         var geo = this.httpService.getCoordinates(this.data2['ADDRESS1'], this.data2['CITY'],this.data2['STATE'],this.data2['ZIPCODE']);
-        geo.subscribe(data => {          
+        geo.subscribe(data => {
           if (data['success'] != 1){
             console.log(data['message']);
           }

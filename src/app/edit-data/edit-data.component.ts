@@ -106,7 +106,6 @@ export class EditDataComponent implements OnInit {
     this._activaterouter.params.subscribe(
       params=>{
         this.rowID = params['id'];
-        console.log('rowID: ' + this.rowID);
       })
       this.getDataEntry();
   }
@@ -241,29 +240,24 @@ export class EditDataComponent implements OnInit {
 
 
 
-    console.log(this.model);
     return this.validateInputs;
 
   }
 
   submitData(){
     var check = this.checkInputs();
-    console.log(check);
     if (check == false){
       this.errMessage = 'Please enter the fields correctly!';
       this.errErrorMessage = true;
       window.scrollTo(0 , 0);
     }
     else{
-      console.log(this.addressModel)
       this.errErrorMessage = false;
       var dataObs = this._httpService.updateDataEntry(this.rowID,this.model, this.addressModel);
       dataObs.subscribe(data=>{
         if(data['success'] != 1){
-          console.log(data['message']);
         }
         else{
-          console.log(data['message']);
           localStorage.setItem("dataUpdated","true");
           this._router.navigate(['/viewData']);
         }
@@ -285,8 +279,6 @@ export class EditDataComponent implements OnInit {
         this.data2 = data['data2'][0];
         this.showMessage = false;
         this.showData = true;
-        console.log(this.data2);
-        console.log(this.data);
 
       }
     })

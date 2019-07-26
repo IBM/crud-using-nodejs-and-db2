@@ -77,7 +77,7 @@ let connStr = "DATABASE="+process.env.DB_DATABASE+";HOSTNAME="+process.env.DB_HO
 
 })
 
-app.post('/getData', function(request, response){  
+app.post('/getData', function(request, response){
    ibmdb.open(connStr, function (err,conn) {
      if (err){
        return response.json({success:-1, message:err});
@@ -93,7 +93,7 @@ app.post('/getData', function(request, response){
    });
 })
 
-app.post('/getUniqueData', function(request, response){  
+app.post('/getUniqueData', function(request, response){
    ibmdb.open(connStr, function (err,conn) {
      if (err){
        return response.json({success:-1, message:err});
@@ -108,11 +108,9 @@ app.post('/getUniqueData', function(request, response){
              return response.json({success:-3, message:err});
            }
            conn.close(function () {
-             console.log(data);
-             console.log(data2.length);
              if (data2.length == 0){
                data2[0] = {'ADDRESS1': '', 'ADDRESS2': '','CITY': '','STATE': '','COUNTRY': '','ZIPCODE': '','HOME_ID': data[0]['ID']};
-               console.log(data2);
+
              }
 
              return response.json({success:1, message:'Data Received!', data:data,data2:data2 });
@@ -123,7 +121,7 @@ app.post('/getUniqueData', function(request, response){
    });
 })
 
-app.post('/updateDataEntry', function(request, response){  
+app.post('/updateDataEntry', function(request, response){
   ibmdb.open(connStr, function (err,conn) {
     if (err){
       return response.json({success:-1, message:err});
@@ -142,7 +140,7 @@ app.post('/updateDataEntry', function(request, response){
         return response.json({success:-2, message:err});
       }
       conn.query(str3, function (err, data2) {
-        console.log(data);
+
         if (err){
           return response.json({success:-3, message:err});
         }
@@ -179,7 +177,7 @@ app.post('/updateDataEntry', function(request, response){
 })
 
 
-app.post('/deleteData', function(request, response){  
+app.post('/deleteData', function(request, response){
    ibmdb.open(connStr, function (err,conn) {
      if (err){
        return response.json({success:-1, message:err});
@@ -203,8 +201,7 @@ app.post('/deleteData', function(request, response){
    });
 })
 
-app.get('/predict', function(request, response){  
-  console.log(request);
+app.get('/predict', function(request, response){
    return response.json({
         "address1":"10892 Northfield Sq",
         "address2": "",

@@ -39,7 +39,6 @@ export class ViewDataComponent implements OnInit {
 
     if (localStorage.getItem("dataDeleted") == "true"){
       this.showDataDeletedMessage = true;
-      console.log(this.showDataDeletedMessage);
     }
     localStorage.setItem("dataDeleted","false");
   }
@@ -69,14 +68,12 @@ export class ViewDataComponent implements OnInit {
 
 
   deleteData(row:any){
-    console.log('Deleting Data...');
     var dataObs = this._httpService.deleteDataFromDatabase(row['ID']);
     dataObs.subscribe(data=>{
       if(data['success'] != 1){
         console.log(data['message']);
       }
       else{
-        console.log('it works!')
         localStorage.setItem("dataDeleted","true");
         window.location.reload();
         window.scrollTo(0 , 0);
