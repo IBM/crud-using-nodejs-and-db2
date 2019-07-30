@@ -23,24 +23,25 @@ export class HttpService {
   createNewDataEntry(houseInfo, addressInfo) {
     const payload = JSON.stringify(houseInfo);
     const payload2 = JSON.stringify(addressInfo);
-    return this.http.post(environment.NODE_HOST + 'newDataEntry', { house: payload, address: payload2 }, this.httpOptions);
+    return this.http.post(environment.NODE_HOST + '/newDataEntry', { house: payload, address: payload2 }, this.httpOptions);
   }
 
   getDataFromDatabase(id) {
-    return this.http.post(environment.NODE_HOST + 'getData', { num: id }, this.httpOptions);
+    console.log(environment.NODE_HOST)
+    return this.http.post(environment.NODE_HOST + '/getData', { num: id }, this.httpOptions);
   }
 
   getUniqueDataFromDatabase(id) {
-    return this.http.post(environment.NODE_HOST + 'getUniqueData', { id: id }, this.httpOptions);
+    return this.http.post(environment.NODE_HOST + '/getUniqueData', { id: id }, this.httpOptions);
   }
 
   deleteDataFromDatabase(id) {
-    return this.http.post(environment.NODE_HOST + 'deleteData', { id: id }, this.httpOptions);
+    return this.http.post(environment.NODE_HOST + '/deleteData', { id: id }, this.httpOptions);
   }
 
   updateDataEntry(id, houseInfo, addressInfo) {
     const payload = JSON.stringify(houseInfo);
-    return this.http.post(environment.NODE_HOST + 'updateDataEntry', { id: id, data: houseInfo, addressInfo: addressInfo }, this.httpOptions);
+    return this.http.post(environment.NODE_HOST + '/updateDataEntry', { id: id, data: houseInfo, addressInfo: addressInfo }, this.httpOptions);
   }
 
   predict(predictOption: string, houseInfo: PredictHouseInfo) {
@@ -55,7 +56,7 @@ export class HttpService {
   }
 
   getCoordinates(address1, city, state, zipcode) {
-    return this.http.post(environment.NODE_HOST + 'geocode', { address1: address1, city: city, state: state, zipcode: zipcode }, this.httpOptions);
+    return this.http.post(environment.NODE_HOST + '/geocode', { address1: address1, city: city, state: state, zipcode: zipcode }, this.httpOptions);
   }
 
 }
