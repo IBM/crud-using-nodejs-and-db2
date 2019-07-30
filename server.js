@@ -17,6 +17,26 @@ app.use(function (req, res, next) {
     next();
 });
 
+
+const { WatsonMLScoringEndpoint } = require("watson-ml-model-utils");
+
+
+var features = ['LOTAREA', 'BLDGTYPE', 'HOUSESTYLE', 'OVERALLCOND', 'YEARBUILT',
+       'ROOFSTYLE', 'EXTERCOND', 'FOUNDATION', 'BSMTCOND', 'HEATING',
+       'HEATINGQC', 'CENTRALAIR', 'ELECTRICAL', 'FULLBATH', 'HALFBATH',
+       'BEDROOMABVGR', 'KITCHENABVGR', 'KITCHENQUAL', 'TOTRMSABVGRD',
+       'FIREPLACES', 'FIREPLACEQU', 'GARAGETYPE', 'GARAGEFINISH', 'GARAGECARS',
+       'GARAGECOND', 'POOLAREA', 'POOLQC', 'FENCE', 'MOSOLD', 'YRSOLD' ];
+
+let endpoint = new WatsonMLScoringEndpoint(features, {
+         servicePath: 'https://ibm-watson-ml.mybluemix.net',
+         username: '04c75888-357b-4548-9a3d-824b0fdf4355',
+         password: '1626bb66-81f2-4d17-962d-b750eedce230',
+         instanceId: 'ee215244-7c33-4ffb-ae7f-e2aac55d92f4',
+         modelId: 'fbb8ab9f-4600-470b-95f0-55dd30925d6e',
+         deploymentId: 'c3cf73a6-4cbb-493f-879d-e60d30c3f26f'
+ });
+
 var NodeGeocoder = require('node-geocoder');
 
 var options = {
@@ -32,6 +52,8 @@ var geocoder = NodeGeocoder(options);
 
 
 let connStr = "DATABASE="+process.env.DB_DATABASE+";HOSTNAME="+process.env.DB_HOSTNAME+";PORT="+process.env.DB_PORT+";PROTOCOL=TCPIP;UID="+process.env.DB_UID+";PWD="+process.env.DB_PWD+";";
+
+
 
 
 //let connStr = "DATABASE=BLUDB;HOSTNAME=db2whoc-flex-zipnqsp.services.au-syd.bluemix.net;PORT=50000;PROTOCOL=TCPIP;UID=bluadmin;PWD=zWG@U4q1uFpDTi0v8jVBDI7_PtSr0;";
@@ -77,7 +99,8 @@ let connStr = "DATABASE="+process.env.DB_DATABASE+";HOSTNAME="+process.env.DB_HO
 
 })
 
-app.post('/getData', function(request, response){  
+app.post('/getData', function(request, response){
+  console.log('hi')
    ibmdb.open(connStr, function (err,conn) {
      if (err){
        return response.json({success:-1, message:err});
@@ -93,7 +116,7 @@ app.post('/getData', function(request, response){
    });
 })
 
-app.post('/getUniqueData', function(request, response){  
+app.post('/getUniqueData', function(request, response){
    ibmdb.open(connStr, function (err,conn) {
      if (err){
        return response.json({success:-1, message:err});
@@ -123,7 +146,7 @@ app.post('/getUniqueData', function(request, response){
    });
 })
 
-app.post('/updateDataEntry', function(request, response){  
+app.post('/updateDataEntry', function(request, response){
   ibmdb.open(connStr, function (err,conn) {
     if (err){
       return response.json({success:-1, message:err});
@@ -179,7 +202,7 @@ app.post('/updateDataEntry', function(request, response){
 })
 
 
-app.post('/deleteData', function(request, response){  
+app.post('/deleteData', function(request, response){
    ibmdb.open(connStr, function (err,conn) {
      if (err){
        return response.json({success:-1, message:err});
@@ -203,7 +226,16 @@ app.post('/deleteData', function(request, response){
    });
 })
 
-app.get('/predict', function(request, response){  
+
+app.post('/WML_Predict', function(request, response){
+    endpoint.score(request.body.values).then(
+      output => {
+          console.log(output.prediction);
+          return response.json({success:1, value:output.prediction});
+      }).catch(err => console.log(err));
+})
+
+app.get('/predict', function(request, response){
   console.log(request);
    return response.json({
         "address1":"10892 Northfield Sq",

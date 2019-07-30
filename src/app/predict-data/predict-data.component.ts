@@ -141,6 +141,17 @@ export class PredictDataComponent implements OnInit {
         (predictions) => {
           console.log('Predictions Result');
           console.log(predictions);
+          
+
+
+
+
+
+
+
+
+
+
         });
     }
   }
