@@ -23,8 +23,8 @@
                                   <agm-map  [zoom]="13" [latitude]="lat" [longitude]="lng">
                                     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
                                   </agm-map>
-                                  <p style="font-size: 15px;margin-bottom: 0px;margin-top: 10px;">Address:&nbsp;{{model['address1']}} {{model['address2']}}, {{model['city']}}, {{model['state']}}, {{model['zipcode']}} {{model['country']}}</p>
-                                    <p style="font-size: 20px;color: rgb(78,115,223);">Est. Sale Price:&nbsp;${{model['salePrice']}}</p>
+                                  <p style="font-size: 15px;margin-bottom: 0px;margin-top: 10px;">Address:&nbsp;{{addressModel['address1']}} {{addressModel['address2']}}, {{addressModel['city']}}, {{addressModel['state']}}, {{model['zipcode']}} {{model['country']}}</p>
+                                    <p style="font-size: 20px;color: rgb(78,115,223);">Est. Sale Price:&nbsp;${{salePrice}}</p>
                                 </div>
                             </div>
                         </div>

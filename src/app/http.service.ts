@@ -52,7 +52,7 @@ export class HttpService {
     let api = '';
     if (predictOption.toLowerCase() === 'db2') {
         api = environment.GO_DB2_API;
-        return this.http.post(api, payload, this.httpOptions);
+      //  return this.http.get(environment.NODE_HOST + 'predict', payload, this.httpOptions);
     } else {
         return this.http.post(environment.NODE_HOST + 'WML_Predict', { values:  [Number(houseInfo['lotArea']), houseInfo['bldgType'], houseInfo['houseStyle'], Number(houseInfo['overallCond']), Number(houseInfo['yearBuilt']), houseInfo['roofStyle'], houseInfo['exterCond'], houseInfo['foundation'], houseInfo['bsmtCond'],
        houseInfo['heating'], houseInfo['heatingQC'], houseInfo['centralAir'], houseInfo['electrical'], Number(houseInfo['fullBath']), Number(houseInfo['halfBath']), Number(houseInfo['bedroomAbvGr']), Number(houseInfo['kitchenAbvGr']), houseInfo['kitchenQual'], Number(houseInfo['totalRmsAbvGrd']),  Number(houseInfo['fireplaces']), houseInfo['fireplaceQu'], houseInfo['garageType'],

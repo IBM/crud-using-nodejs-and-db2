@@ -28,13 +28,14 @@ var features = ['LOTAREA', 'BLDGTYPE', 'HOUSESTYLE', 'OVERALLCOND', 'YEARBUILT',
        'FIREPLACES', 'FIREPLACEQU', 'GARAGETYPE', 'GARAGEFINISH', 'GARAGECARS',
        'GARAGECOND', 'POOLAREA', 'POOLQC', 'FENCE', 'MOSOLD', 'YRSOLD' ];
 
+
 let endpoint = new WatsonMLScoringEndpoint(features, {
-         servicePath: 'https://ibm-watson-ml.mybluemix.net',
-         username: '04c75888-357b-4548-9a3d-824b0fdf4355',
-         password: '1626bb66-81f2-4d17-962d-b750eedce230',
-         instanceId: 'ee215244-7c33-4ffb-ae7f-e2aac55d92f4',
-         modelId: 'fbb8ab9f-4600-470b-95f0-55dd30925d6e',
-         deploymentId: 'c3cf73a6-4cbb-493f-879d-e60d30c3f26f'
+         servicePath: process.env.WML_SERVICEPATH,
+         username: process.env.WML_UID,
+         password: process.env.WML_PWD,
+         instanceId: process.env.WML_INSTANCEID,
+         modelId: process.env.WML_MODELID,
+         deploymentId: process.env.WML_DEPLOYMENTID
  });
 
 var NodeGeocoder = require('node-geocoder');
