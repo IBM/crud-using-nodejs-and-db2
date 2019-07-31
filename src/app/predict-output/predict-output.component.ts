@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { HttpService }  from '../http.service';
 import { PredictHouseInfo } from '../models/predict-house-info';
+import { AddressInfo } from '../models/address-info';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {  MapsAPILoader }  from '@agm/core';
 import { faImage, faClock, faBed, faCar, faBuilding, faDoorOpen, faFire, faHome, faSwimmer, faBath } from '@fortawesome/free-solid-svg-icons';
@@ -32,7 +33,9 @@ export class PredictOutputComponent implements OnInit {
   averageSalePrice:string;
   showData:boolean;
   showMessage:boolean;
-  model:any;
+
+  model: PredictHouseInfo;
+  addressModel: AddressInfo;
 
   constructor(private _router:Router, private _httpService:HttpService) {
     this.showData = false;
@@ -45,21 +48,34 @@ export class PredictOutputComponent implements OnInit {
     this.fireplace = '';
     this.garage = '';
     this.bath = '';
-    this.model = [];
     this.salePrice = '';
     this.averageSalePrice = '';
+
+    this.model = new PredictHouseInfo('', 'Select BldgType', 'Select HouseStyle', '', '', '', '', '', '', 'Select KitchenQual', '', 'Select Heating', 'Select HeatingQC', 'Select CentralAir', 'Select Electrical', 'Select RoofStyle', 'Select ExterCond', 'Select Foundation', 'Select BsmtCond', '', 'Select PoolQC', '', 'Select FireplaceQu', 'Select GarageType', 'Select GarageFinish', '', 'Select GarageCond', 'Select Fence', '', '');
+
+    this.addressModel = new AddressInfo('', ' ', '', '', '', '');
+
   }
 
 
   ngOnInit() {
     this.showData = false;
     this.showMessage = true;
-    this.model = JSON.parse(localStorage.getItem("predictOutput"));
+
+    this.model = (JSON.parse(localStorage.getItem('prediction_data')));
+
+    if (localStorage.getItem('ml-model') === 'db2') {
+        this.salePrice = (JSON.parse(localStorage.getItem('predicted_value'))['salePrice']);
+    } else {
+        this.salePrice = (JSON.parse(localStorage.getItem('predicted_value'))['value']);
+    }
+
+    this.addressModel = (JSON.parse(localStorage.getItem('address')));
     this.getGeoCode();
   }
 
   getGeoCode(){
-    var geo = this._httpService.getCoordinates(this.model['address1'], this.model['city'],this.model['state'],this.model['zipcode']);
+    var geo = this._httpService.getCoordinates(this.addressModel['address1'], this.addressModel['city'],this.addressModel['state'],this.addressModel['zipcode']);
     geo.subscribe(data => {
       console.log(data);
       if (data['success'] != 1){

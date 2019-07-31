@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   GO_DB2_API: 'http://localhost:8080/predict',
-  IBM_WML_API: 'https://<url>',
-  NODE_HOST: 'http://localhost:8888'
+  IBM_WML_API: 'https://us-south.ml.cloud.ibm.com/v3/wml_instances/ee215244-7c33-4ffb-ae7f-e2aac55d92f4/deployments/3cfaa43b-4cae-403a-a4ed-db8b3de009dd/online',
+  NODE_HOST: 'http://localhost:8888/'
 };
 
 /*

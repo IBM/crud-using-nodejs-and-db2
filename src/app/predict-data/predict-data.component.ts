@@ -63,7 +63,7 @@ export class PredictDataComponent implements OnInit {
   validateInputFields: boolean;
 
 
-  constructor(private router: Router, private httpService: HttpService) {
+  constructor(private _router: Router, private httpService: HttpService) {
 
     this.validateInputFields = true;
 
@@ -141,6 +141,11 @@ export class PredictDataComponent implements OnInit {
         (predictions) => {
           console.log('Predictions Result');
           console.log(predictions);
+          localStorage.setItem('prediction_data', JSON.stringify(this.model));
+          localStorage.setItem('predicted_value', JSON.stringify(predictions));
+          localStorage.setItem('address', JSON.stringify(this.addressModel));
+          localStorage.setItem('ml-model',this.predictOption);
+          this._router.navigate(['/predictOutput']);
         });
     }
   }

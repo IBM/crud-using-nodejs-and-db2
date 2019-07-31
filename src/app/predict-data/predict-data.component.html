@@ -37,19 +37,19 @@
                     </div>
                     <div class="card shadow mb-3">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">address Information</p>
+                            <p class="text-primary m-0 font-weight-bold">Address Information</p>
                         </div>
                         <div class="card-body">
                             <div class="form-row" style="margin-bottom:0px;">
                                 <div class="col-md-2 mb-3">
-                                    <label for="address1">address 1</label>
+                                    <label for="address1">Address 1</label>
                                     <input type="text" class="form-control" id="address1" placeholder="1234 abc st."
                                         required [(ngModel)]="addressModel.address1" #address1="ngModel"
                                         name="address1">
                                     <small class="text-danger" *ngIf=errAddress1>Please enter a valid address</small>
                                 </div>
                                 <div class="col-md-2 mb-3">
-                                    <label for="address2">address2</label>
+                                    <label for="address2">Address2</label>
                                     <input type="text" class="form-control" id="address2" placeholder="Apt 4" required
                                         [(ngModel)]="addressModel.address2" #address2="ngModel" name="address2">
                                     <small class="text-danger" *ngIf=errAddress2>Please enter a valid address</small>
@@ -117,7 +117,7 @@
 
                                         <option> Select BldgType</option>
                                         <option>1Fam</option>
-                                        <option>2FmCon</option>
+                                        <option>2fmCon</option>
                                         <option>Duplx</option>
                                         <option>TwnhsE</option>
                                         <option>TwnhsI</option>
@@ -207,7 +207,6 @@
                                         <option>Gd</option>
                                         <option>TA</option>
                                         <option>Fa</option>
-                                        <option>Po</option>
                                     </select>
                                     <small class="text-danger" *ngIf=errKitchenQual>Please choose an option</small>
                                 </div>
@@ -220,7 +219,7 @@
                             <p class="text-primary m-0 font-weight-bold">Utilities</p>
                         </div>
                         <div class="card-body">
-                            <div class="form-row" style="margin-bottom:0px;">                                
+                            <div class="form-row" style="margin-bottom:0px;">
                                 <div class="col-md-2 mb-3">
                                     <label for="email"><strong>Heating</strong></label><select class="form-control"
                                         required [(ngModel)]="model.heating" #heating="ngModel" name="heating">
@@ -320,7 +319,6 @@
                                         class="form-control" required [(ngModel)]="model.bsmtCond" #bsmtCond="ngModel"
                                         name="bsmtCond">
                                         <option>Select BsmtCond</option>
-                                        <option>Ex</option>
                                         <option>Gd</option>
                                         <option>TA</option>
                                         <option>Fa</option>
@@ -341,9 +339,8 @@
                                         <option>Select PoolQC</option>
                                         <option>Ex</option>
                                         <option>Gd</option>
-                                        <option>TA</option>
                                         <option>Fa</option>
-                                        <option>Po</option>
+                                        <option>NA</option>
                                     </select>
                                     <small class="text-danger" *ngIf=errPoolQC>Please choose an option</small>
 
@@ -389,7 +386,7 @@
                                         <option>2Types</option>
                                         <option>Attchd</option>
                                         <option>Basment</option>
-                                        <option>Builtin</option>
+
                                         <option>CarPort</option>
                                         <option>Detchd</option>
                                         <option>NA</option>
@@ -464,7 +461,7 @@
                                         type="text" placeholder="Year Sold" required [(ngModel)]="model.yrSold"
                                         #yrSold="ngModel" name="yrSold"><small class="text-danger"
                                         *ngIf=errYrSold>Please enter a valid number</small>
-                                </div>                                
+                                </div>
                                 <div class="col-md-2 mb-3" style="margin-top:35px; margin-left:15px;">
 
                                     <button class="btn btn-primary btn-sm" type="submit" (click)=predict()>SUBMIT
