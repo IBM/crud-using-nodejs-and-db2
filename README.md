@@ -195,6 +195,10 @@ and
 
 You can go to the UI by running the following URL in the browser: `http://localhost:8888`
 
+## Demo
+
+![demo](doc/source/images/demo.gif)
+
 ## Learn more
 
 * **Artificial Intelligence Code Patterns**: Enjoyed this Code Pattern? Check out our other [AI Code Patterns](https://developer.ibm.com/technologies/artificial-intelligence/)
