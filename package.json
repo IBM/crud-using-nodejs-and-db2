@@ -28,7 +28,7 @@
     "dotenv": "^8.0.0",
     "geocoder": "^0.2.3",
     "hammerjs": "^2.0.8",
-    "ibm_db": "^2.5.2",
+    "ibm_db": "^2.6.0",
     "node-geocoder": "^3.23.0",
     "nodemon": "^1.19.1",
     "rxjs": "~6.4.0",
